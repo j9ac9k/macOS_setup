@@ -4,7 +4,7 @@
 # Change the variables below per your environment
 orgName="com.ognyanmoore.scripts"
 hostName="Macbook Pro"
-loginWindowText="If found please call 650-646-8318"
+loginWindowText="TEXT YOU WANT TO DISPLAY"
 osVersion=$(sw_vers -productVersion | awk -F. '{print $2}')
 swVersion=$(sw_vers -productVersion)
 currentDate=$(date +"%Y-%m-%d %H:%M:%S")
@@ -44,14 +44,22 @@ function installEssentialApps()
 	brew install less
 	brew install perl518 
 	brew install rsync
-	#brew install svn #Error with 10.10 see: https://github.com/Homebrew/homebrew/issues/33430
 	brew install unzip
-	#brew install vim --override-system-vi
 	brew install macvim --override-system-vim --custom-system-icons
 	brew link --overwrite macvim
 	
 	#install java
 	brew cask install java
+
+	#bandaiding the java installation
+	echo -e "\tMaking Java Changes..."
+	javaHome=$(/usr/libexec/java_home)
+	cd $javaHome && cd ..
+	javaContents=$(pwd)
+	sudo ln -nsf javaContents ./CurrentJDK
+	cd /System/Library/Frameworks/JavaVM.framework
+	sudo ln -nsf Versions/CurrentJDK/Home/include/ ./Headers
+	sudo cp Headers/darwin/jni_md.h Headers/ && cd ~/
 	
 	#installing replacement utils
 	brew install coreutils
@@ -127,17 +135,6 @@ function installEssentialApps()
 	
 	#R-Stats...
 	brew install R
-
-	#bandaiding the java installation
-	echo -e "\tMaking Java Changes..."
-	javaHome=$(/usr/libexec/java_home)
-	cd $javaHome && cd ..
-	javaContents=$(pwd)
-	sudo ln -nsf javaContents ./CurrentJDK
-	cd /System/Library/Frameworks/JavaVM.framework
-	sudo ln -nsf Versions/CurrentJDK/Home/include/ ./Headers
-	sudo cp Headers/darwin/jni_md.h Headers/ && cd ~/
-	
 	R CMD javareconf JAVA_CPPFLAGS=-I/System/Library/Frameworks/JavaVM.framework/Headers
 	
 	#ZeroMQ
@@ -151,8 +148,6 @@ function installEssentialApps()
 	brew cask install mactex
 	echo export PATH=/usr/texbin:$(brew --prefix coreutils)/libexec/gnubin:"$PATH" >> ~/.bash_profile
 	source ~/.bash_profile
-	
-	brew cask install texmaker
 
 	#generic colorizer...
 	brew install grc
@@ -181,8 +176,6 @@ function installEssentialApps()
 	
 	#system tools
 	brew cask install totalfinder 
-	#brew cask install tinkertool
-	#brew cask install onyx 
 	brew cask install cheatsheet 
 	brew cask install iterm2 
 	curl -L iterm2.com/misc/install_shell_integration.sh | bash
@@ -202,7 +195,6 @@ function installEssentialApps()
 	brew cask install virtualbox
 	brew cask install vagrant
 	brew cask install vagrant-manager
-	#vagrant install vagrant-virtualbox
 	brew cask install deathtodsstore
 	open -a ~/DeathToDSStore.app
 
@@ -220,7 +212,6 @@ function installEssentialApps()
 	open https://sublime.wbond.net/installation#st3
 	open -a ~/Applications/Sublime\ Text.app
 	
-	brew cask install textmate 				#text editor
 	brew cask install pycharm-ce 			#Python IDE for large projects
 	brew cask install spyder 				#Python IDE for Scientific Computing
 	brew cask install android-studio-bundle #Android IDE
@@ -229,7 +220,6 @@ function installEssentialApps()
 	brew cask install rstudio 				#R-Stats IDE
 
 	#media 
-	#brew cask install kindle
 	brew cask install steam
 	brew cask install plex-home-theater
 	brew cask install spotify
@@ -254,8 +244,6 @@ function installEssentialApps()
 
 	#configuring git
 	echo -e "\tConfiguring Git"
-	git config --global user.name "Ognyan Moore"
-	git config --global user.email "ognyan.moore@jacobs.ucsd.edu"
 	git config --global github.user j9ac9k
 	git config --global color.ui true
 	git config --global core.editor "subl -w"
@@ -579,14 +567,12 @@ function dockSettings()
 	dockutil --add ~/Applications/Plex\ Home\ Theater.app
 	dockutil --add ~/Applications/Evernote.app
 	dockutil --add ~/Applications/Sublime\ Text.app
-	dockutil --add ~/Applications/TextMate.app
 	dockutil --add ~/Applications/Spyder.app
 	dockutil --add ~/Applications/PyCharm\ CE.app
 	dockutil --add ~/Applications/RStudio.app
 	dockutil --add /Applications/Designer.app
 	dockutil --add ~/Applications/GitHub.app
 	dockutil --add ~/Applications/Mou.app
-	dockutil --add ~/Applications/texmaker.app
 	dockutil --add ~/Applications/Dash.app
 	#dockutil --add /Applications/Utilities/Activity\ Monitor.app
 	dockutil --add '~/Downloads' --view grid --display folder --allhomes --section others
@@ -735,7 +721,7 @@ function configurePython()
 	bash Miniconda-3.7.0-MacOSX-x86_64.sh
 	rm Miniconda-3.7.0-MacOSX-x86_64.sh
 
-	#echo export PATH='$HOME/miniconda/bin:$PATH' >> ~/.bash_profile
+	echo export PATH='$HOME/miniconda/bin:$PATH' >> ~/.bash_profile
 	source ~/.bash_profile
 	
 	echo -e "\tUpdating miniconda"
@@ -871,7 +857,7 @@ function downloads()
 		
 	cd ~/GitHub/homebrew-cask
 	git remote add upstream https://github.com/caskroom/homebrew-cask.git
-	git fetch upstream
+	git fetch upstream && cd ~/
 	}	
 #------------------------------		
 #-------BEGIN SCRIPT-----------
