@@ -63,8 +63,8 @@ function installEssentialApps()
 	
 	#installing replacement utils
 	brew install coreutils
-	echo export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" >> ~/.bash_profile
-	echo export manpath="/usr/local/opt/coreutils/libexec/gnuman:$manpath" >> ~/.bash_profile
+	echo 'export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"' >> ~/.bash_profile
+	echo 'export manpath="/usr/local/opt/coreutils/libexec/gnuman:$manpath"' >> ~/.bash_profile
 	source ~/.bash_profile
 	
 	brew install binutils
@@ -146,12 +146,12 @@ function installEssentialApps()
 	
 	#Latex
 	brew cask install mactex
-	echo export PATH=/usr/texbin:$(brew --prefix coreutils)/libexec/gnubin:"$PATH" >> ~/.bash_profile
+	echo 'export PATH=/usr/texbin:$(brew --prefix coreutils)/libexec/gnubin:"$PATH"' >> ~/.bash_profile
 	source ~/.bash_profile
 
 	#generic colorizer...
 	brew install grc
-	echo source "`brew --prefix`/etc/grc.bashrc" >> ~/.bash_profile
+	echo 'source "`brew --prefix`/etc/grc.bashrc"' >> ~/.bash_profile
 	source ~/.bash_profile
 
 	# Install syncing software
@@ -250,7 +250,7 @@ function installEssentialApps()
 	
 	#allowing for auto-complete in bash
 	echo -e "\tAllowing auto-complete for git in bash"
-	echo source `brew --prefix git`/etc/bash_completion.d/git-completion.bash >> ~/.bashrc
+	echo "source `brew --prefix git`/etc/bash_completion.d/git-completion.bash" >> ~/.bashrc
 	source ~/.bashrc
 	
 	#transfering git with HTTPS (needs to store/cache password)
@@ -721,7 +721,7 @@ function configurePython()
 	bash Miniconda-3.7.0-MacOSX-x86_64.sh
 	rm Miniconda-3.7.0-MacOSX-x86_64.sh
 
-	echo export PATH='$HOME/miniconda/bin:$PATH' >> ~/.bash_profile
+	echo "export PATH='$HOME/miniconda/bin:$PATH'" >> ~/.bash_profile
 	source ~/.bash_profile
 	
 	echo -e "\tUpdating miniconda"
