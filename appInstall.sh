@@ -247,6 +247,7 @@ function installEssentialApps()
 	git config --global github.user j9ac9k
 	git config --global color.ui true
 	git config --global core.editor "subl -w"
+	git config --global push.default simple
 	
 	#allowing for auto-complete in bash
 	echo -e "\tAllowing auto-complete for git in bash"
@@ -806,13 +807,7 @@ function downloads()
 	#Solorized themes...
 	echo -e "\tDownloading Solorized Themes..."
 	curl -o ~/Downloads/solarized.zip http://ethanschoonover.com/solarized/files/solarized.zip
-		
-	#TextMate and Sublime Text Themes
-	echo -e "\tDownloading Textmate and Sublime Themes..."
-	git clone https://github.com/s2k/Close-to-the-Sea ~/Downloads/Themes/TextMate/Close-to-the-Sea
-	git clone https://github.com/squidfunk/textmate-themes/*.tmTheme ~/Downloads/Theme/TextMate/shipwreck
-	git clone https://github.com/nikeee/Visual-Studio-Dark ~/Downloads/Themes/TextMate/Visual-Studio
-		
+				
 	#Solorized Spyder Themes
 	echo -e "\tDownloading Solorized Spyder Theme"
 	git clone https://github.com/pshchelo/spyder-color-solarized ~/Downloads/Themes/Spyder/Solorized
