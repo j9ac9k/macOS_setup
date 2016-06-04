@@ -1,0 +1,36 @@
+name: main
+channels: 
+    - conda-forge
+    - r
+dependencies:
+    - cython
+    - anaconda-client
+    - jupyter
+    - notebook
+    - ipython
+    - qtconsole
+    - nbconvert
+    - numpy
+    - matplotlib
+    - seaborn
+    - networkx
+    - scipy
+    - sympy
+    - pandas
+    - scikit-learn
+    - scikit-image
+    - nltk
+    - gensim
+    - statsmodels
+    - numba
+    - rpy2
+    - oct2py
+    - pytest
+    - opencv
+    
+    # R Packages
+    - r-r
+    - r-ggplot2
+    - r-knitr
+    - r-irkernel
+    - r-shiny
