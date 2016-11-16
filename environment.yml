@@ -1,7 +1,6 @@
 name: main
 channels: 
     - conda-forge
-    - r
 dependencies:
     - cython
     - anaconda-client
@@ -27,10 +26,4 @@ dependencies:
     - oct2py
     - pytest
     - opencv
-    
-    # R Packages
-    - r-r
-    - r-ggplot2
-    - r-knitr
-    - r-irkernel
-    - r-shiny
+

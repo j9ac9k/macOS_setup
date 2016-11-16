@@ -1,5 +1,8 @@
-
+#!/usr/bash
 # Code taken from tdhopper's new-mac-setup repo
+
+# Agree to Xcode license
+sudo xcodebuild -license
 
 # Install Homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -15,5 +18,4 @@ wget http://repo.continuum.io/miniconda/Miniconda-latest-MacOSX-x86_64.sh -O min
 chmod +x miniconda.sh
 ./miniconda.sh -b
 
-# Agree to Xcode license
-sudo xcodebuild -license
+
