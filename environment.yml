@@ -17,13 +17,10 @@ dependencies:
     - sympy
     - pandas
     - scikit-learn
-    - scikit-image
     - nltk
     - gensim
     - statsmodels
-    - numba
     - rpy2
     - oct2py
     - pytest
-    - opencv
 

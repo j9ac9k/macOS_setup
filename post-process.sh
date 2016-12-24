@@ -1,4 +1,4 @@
-echo 'export PATH=/usr/texbin:$(brew --prefix coreutils)/libexec/gnubin:"$PATH"' >> ~/.bash_profile
+echo 'export PATH=~/miniconda3/bin:$(brew --prefix coreutils)/libexec/gnubin:"$PATH"' >> ~/.bash_profile
 source ~/.bash_profile
 
 # Configure R and JAVA
