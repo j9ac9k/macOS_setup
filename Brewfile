@@ -4,7 +4,6 @@ tap 'caskroom/fonts'
 tap 'homebrew/dupes'
 
 # Install command line apps
-
 brew 'ack'
 brew 'ansiweather'
 brew 'archey'
@@ -32,6 +31,7 @@ brew 'less'
 brew 'libsvg'
 brew 'libxml2'
 brew 'make', args: ['with-default-names']
+brew 'mas'
 brew 'media-info'
 brew 'moreutils'
 brew 'octave', args: ['with-docs', 'with-openblas']
@@ -54,8 +54,7 @@ brew 'z'
 brew 'zeromq'
 brew 'zsh', args: ['with-texi2html', 'with-unicode9'] 
 
-
-# dupes
+# Dupes
 brew 'grep', args: ['with-default-names']
 brew 'lsof'
 brew 'nano'
@@ -64,6 +63,7 @@ brew 'screen'
 brew 'units'
 brew 'whois'
 
+# Casks
 cask_args appdir: '/Applications'
 cask 'alfred'
 cask 'bartender'
@@ -79,8 +79,10 @@ cask 'google-play-music-desktop-player'
 cask 'iterm2'
 cask 'java'
 cask 'kindle'
+cask 'lastpass'
 cask 'macdown'
 cask 'mactex'
+cask 'mactracker'
 cask 'macvim'
 cask 'material-colors'
 cask 'miniconda'
@@ -116,3 +118,9 @@ cask 'quicklook-csv'
 cask 'quicklook-json'
 cask 'jupyter-notebook-ql'
 
+# Mac App Store Installs
+mas Tweetbot
+mas ReadKit
+mas Transmit
+mas Xcode
+mas LastPass
