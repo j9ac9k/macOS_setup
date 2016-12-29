@@ -16,3 +16,7 @@ cat ~/.nano/nanorc >> ~/.nanorc
 
 # Ensuring diff-so-fancy is used exclusively
 diff config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+
+# Ensuring z is used
+echo "/usr/local/etc/profile.d/z.sh" >> ~/.zshrc
+echo "/usr/local/etc/profile.d/z.sh" >> ~/.bashrc

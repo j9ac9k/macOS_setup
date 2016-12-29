@@ -52,8 +52,6 @@ brew 'wget'
 brew 'youtube-dl', args: ['with-rtmpdump']
 brew 'z'
 brew 'zeromq'
-# For Bash or Zsh, put something like this in your $HOME/.bashrc or $HOME/.zshrc:
-#   . `brew --prefix`/etc/profile.d/z.sh
 brew 'zsh', args: ['with-texi2html', 'with-unicode9'] 
 
 
