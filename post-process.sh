@@ -4,6 +4,15 @@ echo 'source activate main' >> ~/.bash_profile
 echo 'export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"' >> ~/.bash_profile
 source ~/.bash_profile
 
+# Enable dark mode
+dark-mode --mode Dark
+
+echo "Configuring Git"
+git config --global github.user j9ac9k
+git config --global color.ui true
+git config --global core.editor "subl -w"
+git config --global push.default simple
+
 # Configure R and JAVA
 R CMD javareconf JAVA_CPPFLAGS=-I/System/Library/Frameworks/JavaVM.framework/Headers
 
