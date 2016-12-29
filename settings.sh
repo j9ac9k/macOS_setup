@@ -1,243 +1,387 @@
-#! /usr/bash
-orgName="com.ognyanmoore.scripts"
-hostName="Macbook Pro"
+#! /usr/bash/env bash
+# much courtesy of https://github.com/mathiasbynens/
 
-echo -e "\tDisabling Sleep while plugged-in..."
+hostName="Macbook-Pro"
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# Disabling Sleep while plugged-in
 sudo pmset -c sleep 0
 
-echo -e "\tConfiguring Git"
-git config --global github.user j9ac9k
-git config --global color.ui true
-git config --global core.editor "subl -w"
-git config --global push.default simple
+# Set standby delay to 24 hours (default is 1 hour)
+sudo pmset -a standbydelay 86400
 
-echo -e "\tResetting QuickLook..."
-# Reset QuickLook plugins
-qlmanage -r
-# Reload QuickLook cache
-qlmanage -r cache
+###############################################################################
+# General UI/UX                                                               #
+###############################################################################
 
-# Remove QuickLook plists
-rm ~/Library/Preferences/com.apple.quicklookconfig.plist
-rm ~/Library/Preferences/com.apple.QuickLookDaemon.plist
-
-echo -e "\tEnabling access to assistive devices..."
-sudo touch /private/var/db/.AccessibilityAPIEnabled
-
-echo -e "\tSetting host name..."
+# Set computer name (as done via System Preferences → Sharing)
+#sudo scutil --set ComputerName "0x6D746873"
 sudo scutil --set HostName $hostName
 
-echo -e "\tEnabling full keyboard access..."
-# Enable full keyboard access (tab through all GUI buttons and fields, not just text boxes and lists)
-sudo defaults write /Library/Preferences/.GlobalPreferences.plist AppleKeyboardUIMode -int 3
+# Menu bar: hide the Time Machine, Volume, and User icons
+for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
+    defaults write "${domain}" dontAutoLoad -array \
+        "/System/Library/CoreServices/Menu Extras/TimeMachine.menu"
+done
 
-echo -e "\tSetting a blazingly fast keyboard repeat rate"
-sudo defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write com.apple.systemuiserver menuExtras -array \
+    "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+    "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+    "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+    "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
-echo -e "\tSet a shorter Delay until key repeat"
-defaults write NSGlobalDomain InitialKeyRepeat -int 12
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+# Possible values: `WhenScrolling`, `Automatic` and `Always`
 
-echo -e "\tTurn off keyboard illumination when computer is not used for 5 minutes"
-sudo defaults write com.apple.BezelServices kDimTime -int 300
+# Disable smooth scrolling
+# (Uncomment if you’re on an older Mac that messes up the animation)
+defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
 
-echo -e "\tMaking the scroll dragging speed faster..."
-defaults write -g NSAutoscrollResponseMultiplier -float 3
+# Increase window resize speed for Cocoa applications
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
-#echo -e "\tIncreasing mouse tracking to 3..."
-#defaults write -g com.apple.mouse.scaling -float 3
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
-#echo -e "\tIncreasing trackpad tracking to 3..."
-#defaults write -g com.apple.trackpad.scaling -int 3
+# Expand print panel by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
-echo -e "\tEnabling tap-to-click..."
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
-echo -e "\tDisabling guest account..."
-sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool NO
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-echo -e "\tSetting a login banner that reads: $loginWindowText..."
-sudo defaults write /Library/Preferences/com.apple.loginwindow.plist LoginwindowText "$loginWindowText"
-
-echo -e "\tDisabling external accounts..."
-# Disable external accounts (i.e. accounts stored on drives other than the boot drive.)
-sudo defaults write /Library/Preferences/com.apple.loginwindow.plist EnableExternalAccounts -bool false
-
-echo -e "\tDisabling prompt to use drives for Time Machine..."
-sudo defaults write /Library/Preferences/com.apple.TimeMachine.plist DoNotOfferNewDisksForBackup -bool true
-
-echo -e "\tDisable the 'Are you sure you want to open this application?' dialog..."
+# Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-echo -e "\tAutomatically quit printer app once the print jobs complete"
-sudo defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+# Remove duplicates in the “Open With” menu (also see `lscleanup` alias)
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
 
-echo -e "\tExpanding the print dialog by default..."
-sudo defaults write /Library/Preferences/.GlobalPreferences.plist PMPrintingExpandedStateForPrint -bool true
-sudo defaults write /Library/Preferences/.GlobalPreferences.plist PMPrintingExpandedStateForPrint2 -bool true
+# Display ASCII control characters using caret notation in standard text views
+# Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
+defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 
-echo -e "\tExpanding the save dialog by default..."
-sudo defaults write /Library/Preferences/.GlobalPreferences.plist NSNavPanelExpandedStateForSaveMode -bool true
-sudo defaults write /Library/Preferences/.GlobalPreferences.plist NSNavPanelExpandedStateForSaveMode2 -bool true
+# Disable Resume system-wide
+defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 
-echo -e "\tDisabling crash report dialogs..."
-sudo defaults write com.apple.CrashReporter DialogType none
+# Disable automatic termination of inactive apps
+defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
-echo -e "\tDisable the warning when changing a file extension? (y/n)"
-sudo defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+# Disable the crash reporter
+defaults write com.apple.CrashReporter DialogType -string "none"
 
-echo -e "\tDisable display from automatically adjusting brightness"
-sudo defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor "Automatic Display Enabled" -bool false
+# Set Help Viewer windows to non-floating mode
+defaults write com.apple.helpviewer DevMode -bool true
 
-echo -e "\tSpeeding up the shutdown delay..."
-sudo defaults write /System/Library/LaunchDaemons/com.apple.coreservices.appleevents.plist ExitTimeOut -int 5
-sudo defaults write /System/Library/LaunchDaemons/com.apple.securityd.plist ExitTimeOut -int 5
-sudo defaults write /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist ExitTimeOut -int 5
-sudo defaults write /System/Library/LaunchDaemons/com.apple.diskarbitrationd.plist ExitTimeOut -int 5
-sudo defaults write /System/Library/LaunchAgents/com.apple.coreservices.appleid.authentication.plist ExitTimeOut -int 5
+# Disable smart quotes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
-echo -e "\tCheck for software updates daily (not weekly)..."
-sudo defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+# Disable smart dashes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
-echo -e "\tDisabling Spotlight indexing on /Volumes..."
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+###############################################################################
+# Screen                                                                      #
+###############################################################################
 
+# Save screenshots to the desktop
+defaults write com.apple.screencapture location -string "${HOME}/Desktop"
 
-echo -e "\tDisabling smart-quotes and smart-dashes..."
-sudo defaults write /Library/Preferences/.GlobalPreferences.plist NSAutomaticQuoteSubstitutionEnabled -bool false
-sudo defaults write /Library/Preferences/.GlobalPreferences.plist NSAutomaticDashSubstitutionEnabled -bool false
+# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+defaults write com.apple.screencapture type -string "png"
 
-echo -e "\tMaking scrollbars always visible..."
-sudo defaults write /Library/Preferences/.GlobalPreferences.plist AppleShowScrollBars -string "Always"
+# Disable shadow in screenshots
+defaults write com.apple.screencapture disable-shadow -bool true
 
-echo -e "\tEnabling secure virtual memory..."
-sudo defaults write /Library/Preferences/com.apple.virtualMemory UseEncryptedSwap -bool yes
+###############################################################################
+# Finder                                                                      #
+###############################################################################
 
-echo -e "\tSetting time to 24-hour..."
-sudo defaults write NSGlobalDomain AppleICUForce24HourTime -bool true
-
-echo -e "\tSolid State Drive detected..."
-# https://github.com/mathiasbynens/dotfiles/blob/master/.osx
-echo -e "\t\tDisabling Time Machine local snapshots..."
-sudo tmutil disablelocal
-
-echo -e "\t\tDisabling hibernation..."
-sudo pmset -a hibernatemode 0
-
-echo -e "\t\tRemoving the sleep image..."
-sudo rm /Private/var/vm/sleepimage
-sudo touch /Private/var/vm/sleepimage
-sudo chflags uchg /Private/var/vm/sleepimage
-
-echo -e "\t\tDisabling Sudden Motion Sensor..."
-sudo pmset -a sms 0
-
-echo -e "\tSetting home folder as the default location for new Finder windows..."
+# Setting home folder as the default location for new Finder windows
 defaults write com.apple.finder NewWindowTarget -string "PfLo"
-defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}"
 
-echo -e "\tShowing Hard Drives on Desktop..."
-#defaults -currentHost write com.apple.finder ShowHardDrivesOnDesktop -bool YES
+# Show icons for hard drives, servers, and removable media on the desktop
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
-echo -e "\tShowing Servers on Desktop..."
-#defaults -currentHost write com.apple.finder ShowMountedServersOnDesktop -bool YES
-
-echo -e "\tShowing External Hard Drives on Desktop..."
-defaults -currentHost write com.apple.finder ShowExternalHardDrivesOnDesktop -bool YES
-
-echo -e "\tShowing removeable media on Desktop..."
-defaults -currentHost write com.apple.finder ShowRemovableMediaOnDesktop -bool YES
-
-echo -e "\tSetting Finder to column view..."
+# Use column view in all Finder windows by default
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`, 'Nlsv'
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 
-echo -e "\tSetting Finder to search the current folder..."
-defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
-
-echo -e "\tShowing status bar..."
+# Finder: show status bar
 defaults write com.apple.finder ShowStatusBar -bool true
 
-echo -e "\tShowing path bar..."
+# Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
 
-echo -e "\tShowing POSIX path bar..."
+# Display full POSIX path as Finder window title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
-echo -e "\tEnabling QuickLook text-selection..."
-defaults write com.apple.finder QLEnableTextSelection -bool true
+# When performing a search, search the current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
-echo -e "\tEnabling QuickLook x-ray vision..."
-defaults write com.apple.finder QLEnableXRayFolders -bool true
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-echo -e "\tMaking Finder animations faster..."
-defaults write com.apple.finder DisableAllAnimations -bool true
+# Enable spring loading for directories
+defaults write NSGlobalDomain com.apple.springing.enabled -bool true
 
-echo -e "\tShowing all file extensions..."
+# Remove the spring loading delay for directories
+defaults write NSGlobalDomain com.apple.springing.delay -float 0
+
+# Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# Show the ~/Library folder
+chflags nohidden ~/Library
+
+# Show the /Volumes folder
+sudo chflags nohidden /Volumes
+
+# Remove Dropbox’s green checkmark icons in Finder
+file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
+[ -e "${file}" ] && mv -f "${file}" "${file}.bak"
+
+# Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Expand the following File Info panes:
-echo -e "\tShowing General, Open with, and Sharing & Permissions on the Get Info window..."
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
     General -bool true \
     OpenWith -bool true \
     Privileges -bool true
 
-echo -e "\tEnabling Airdrop over Ethernet..."
+# Enable AirDrop over Ethernet and on unsupported Macs running Lion
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
-echo -e "\tRemoving duplicates in the 'Open With' menu..."
-/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+###############################################################################
+# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+###############################################################################
 
-echo -e "\tDeath to network .DS_Stores..."
-defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+# Trackpad: enable tap to click for this user and for the login screen
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-echo -e "\tMaking window animations faster..."
-defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
-defaults write com.apple.finder DisableAllAnimations -bool true
+# Trackpad: map bottom right corner to right-click
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
-echo -e "\tMaking QuickLook animation faster..."
-defaults write -g QLPanelAnimationDuration -float 0
+# Disable “natural” (Lion-style) scrolling
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
-echo -e "\tMaking the ~/Library folder visible for ${HOME}..."
-chflags nohidden ~/Library/
+# Increase sound quality for Bluetooth headphones/headsets
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
-echo -e "\tMaking dock faster..."
-defaults write com.apple.dock autohide-time-modifier -float 0
+# Enable full keyboard access for all controls
+# (e.g. enable Tab in modal dialogs)
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-echo -e "\tMaking Mission Control faster..."
-defaults write com.apple.dock expose-animation-duration -float 0
+# Use scroll gesture with the Ctrl (^) modifier key to zoom
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+# Follow the keyboard focus while zoomed in
+defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
-echo -e "\tEnabling spring-loading for all dock apps..."
+# Disable press-and-hold for keys in favor of key repeat
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -float 0.000000000001
+
+# Set language and text formats
+defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
+defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Inches"
+defaults write NSGlobalDomain AppleMetricUnits -bool false
+
+# Set the timezone; see `sudo systemsetup -listtimezones` for other values
+sudo systemsetup -settimezone "America/Los_Angeles" > /dev/null
+
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Stop iTunes from responding to the keyboard media keys
+launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
+
+# Enabling full keyboard access
+# Enable full keyboard access (tab through all GUI buttons and fields, not just text boxes and lists)
+sudo defaults write /Library/Preferences/.GlobalPreferences.plist AppleKeyboardUIMode -int 3
+
+###############################################################################
+# Dock, Dashboard, and hot corners                                            #
+###############################################################################
+
+# Minimize windows into their application’s icon
+defaults write com.apple.dock minimize-to-application -bool true
+
+# Enable spring loading for all Dock items
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 
-echo -e "\tMaking maximize/minimize to scale mode..."
-defaults write com.apple.dock mineffect -string "scale"
+# Speed up Mission Control animations
+defaults write com.apple.dock expose-animation-duration -float 0.1
 
-echo -e "\tDisabling Dashboard..."
-defaults write com.apple.dashboard mcx-disabled -boolean YES
+# Disable Dashboard
+defaults write com.apple.dashboard mcx-disabled -bool true
 
-echo -e "\tDisabling Notificaiton Center..."
-launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist
+# Don’t show Dashboard as a Space
+defaults write com.apple.dock dashboard-in-overlay -bool true
 
-echo -e "\tDisabling iCloud as the default save location..."
-defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
+# Remove the auto-hiding Dock delay
+defaults write com.apple.dock autohide-delay -float 0
+# Remove the animation when hiding/showing the Dock
+defaults write com.apple.dock autohide-time-modifier -float 0
 
-#----------------------#
-# Volume Related
-#----------------------#
-echo -e "\tDisabling volume change feedback..."
-defaults write -g com.apple.sound.beep.feedback -int 0
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
 
-echo -e "\tDisabling Apple Chime on boot..."
+# Make Dock icons of hidden applications translucent
+defaults write com.apple.dock showhidden -bool true
+
+###############################################################################
+# Mac App Store                                                               #
+###############################################################################
+
+# Enable the automatic update check
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+
+# Check for software updates daily, not just once per week
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+# Download newly available updates in background
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+
+# Install System data files & security updates
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+
+# Turn on app auto-update
+defaults write com.apple.commerce AutoUpdate -bool true
+
+# Allow the App Store to reboot machine on macOS updates
+defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
+
+###############################################################################
+# Volume Related                                                              #
+###############################################################################
+# Disabling volume change feedback
+# defaults write -g com.apple.sound.beep.feedback -int 0
+
+# Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
-echo -e "\tAppending hosts file..."
-sudo bash -c 'echo -e "192.168.1.12\tower\n" >> /private/etc/hosts'
+###############################################################################
+# SSD-specific tweaks                                                         #
+###############################################################################
 
-echo -e "\tUse plain text mode for new TextEdit documents..."
-sudo defaults write com.apple.TextEdit RichText -int 0
+# Disable hibernation (speeds up entering sleep mode)
+sudo pmset -a hibernatemode 0
 
-echo -e "\tOpen and save files as UTF-8 in TextEdit..."
+# Remove the sleep image file to save disk space
+sudo rm /private/var/vm/sleepimage
+# Create a zero-byte file instead…
+sudo touch /private/var/vm/sleepimage
+# …and make sure it can’t be rewritten
+sudo chflags uchg /private/var/vm/sleepimage
+
+# Disable the sudden motion sensor as it’s not useful for SSDs
+sudo pmset -a sms 0
+
+###############################################################################
+# TextEdit                                                                    #
+###############################################################################
+
+# Use plain text mode for new TextEdit documents
+defaults write com.apple.TextEdit RichText -int 0
+
+# Open and save files as UTF-8 in TextEdit
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
+
+###############################################################################
+# Google Chrome & Google Chrome Canary                                        #
+###############################################################################
+
+# Disable the all too sensitive backswipe on trackpads
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool true
+defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool true
+
+# Disable the all too sensitive backswipe on Magic Mouse
+defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool true
+defaults write com.google.Chrome.canary AppleEnableMouseSwipeNavigateWithScrolls -bool true
+
+# Expand the print dialog by default
+defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
+defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
+
+###############################################################################
+# Photos                                                                      #
+###############################################################################
+
+# Prevent Photos from opening automatically when devices are plugged in
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+
+###############################################################################
+# Time Machine                                                                #
+###############################################################################
+
+# Prevent Time Machine from prompting to use new hard drives as backup volume
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+# Disable local Time Machine backups
+hash tmutil &> /dev/null && sudo tmutil disablelocal
+
+###############################################################################
+# Spotlight                                                                   #
+###############################################################################
+
+# Disable Spotlight indexing for any volume that gets mounted and has not yet been indexed before.
+# Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
+sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+
+# change indexing order and disabling some search results
+defaults write com.apple.spotlight orderedItems -array \
+    '{"enabled" = 1;"name" = "APPLICATIONS";}' \
+    '{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
+    '{"enabled" = 1;"name" = "DIRECTORIES";}' \
+    '{"enabled" = 1;"name" = "PDF";}' \
+    '{"enabled" = 1;"name" = "FONTS";}' \
+    '{"enabled" = 0;"name" = "DOCUMENTS";}' \
+    '{"enabled" = 0;"name" = "MESSAGES";}' \
+    '{"enabled" = 0;"name" = "CONTACT";}' \
+    '{"enabled" = 0;"name" = "EVENT_TODO";}' \
+    '{"enabled" = 0;"name" = "IMAGES";}' \
+    '{"enabled" = 0;"name" = "BOOKMARKS";}' \
+    '{"enabled" = 0;"name" = "MUSIC";}' \
+    '{"enabled" = 0;"name" = "MOVIES";}' \
+    '{"enabled" = 0;"name" = "PRESENTATIONS";}' \
+    '{"enabled" = 0;"name" = "SPREADSHEETS";}' \
+    '{"enabled" = 0;"name" = "SOURCE";}' \
+    '{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
+    '{"enabled" = 0;"name" = "MENU_OTHER";}' \
+    '{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
+    '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
+    '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
+    '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
+
+# Load new settings before rebuilding the index
+killall mds > /dev/null 2>&1
+# Make sure indexing is enabled for the main volume
+sudo mdutil -i on / > /dev/null
+# Rebuild the index from scratch
+sudo mdutil -E / > /dev/null
+
+echo "Done! Reloading Finder ..."
+killall Finder
