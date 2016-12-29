@@ -11,6 +11,12 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 # Install powerlevel9k theme
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
+# Installing git-flow-completion
+git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/plugins/git-flow-completion
+# still need to enable plugin inside ~/.zshrc
+# plugins=(<some-plugin> <another plugin> git-flow-completion)
+
+
 # Enable Theme
 # add to ~/.zshrc
 # ZSH_THEME="powerlevel9k/powerlevel9k"
