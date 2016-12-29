@@ -1,5 +1,5 @@
-#!/usr/bash
-# Code taken from tdhopper's new-mac-setup repo
+#!/usr/bash/env bash
+./settings.sh
 
 # Agree to Xcode license
 sudo xcodebuild -license
@@ -8,11 +8,13 @@ sudo xcodebuild -license
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Setup Brew bundle for running Brewfiles
-brew tap Homebrew/bundle
+brew tap Homebrew/bundle && brew bundle
 
-# Getting config file
-mkdir ~/Git && cd Git
-git clone https://github.com/j9ac9k/osxSetup.git
-cd osxSetup
-brew bundle
+# create python environment
+conda-env create environment.yml
 
+# configure zsh
+#./zsh_setup.sh
+
+# run post-processing script
+./post-process.sh
