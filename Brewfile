@@ -11,29 +11,31 @@ brew 'archey'
 brew 'bash'
 brew 'ccat'
 brew 'coreutils'
-brew 'curl'
 brew 'diff-so-fancy'
 brew 'duti'
 brew 'ffmpeg'
-brew 'findutils'
-brew 'gcc'
-brew 'git'
+brew 'findutils', args: ['with-default-names']
+brew 'gawk'
+brew 'gcc', args: ['with-all-languages']
+brew 'git', args: ['with-persistent-https']
 brew 'git-extras'
 brew 'git-flow'
 brew 'git-lfs'
 brew 'gist'
-brew 'graphviz', args: ['with-bindings', 'with-librsvg']
-brew 'htop'
+brew 'graphviz', args: ['with-bindings', 'with-librsvg', 'with-freetype']
+brew 'gzip'
+brew 'htop', args: ['with-ncurses']
 brew 'hub'
-brew 'imagemagick', args: ['with-librscg']
+brew 'imagemagick', args: ['with-librsvg', 'with-fontconfig']
 brew 'lastpass-cli'
+brew 'less'
 brew 'libsvg'
 brew 'libxml2'
+brew 'make', args: ['with-default-names']
 brew 'media-info'
 brew 'moreutils'
-brew 'multimarkdown'
-brew 'nano'
 brew 'octave', args: ['with-docs', 'with-openblas']
+brew 'openssh'
 brew 'pacvim'
 brew 'pandoc'
 brew 'pandoc-citeproc'
@@ -44,15 +46,15 @@ brew 'ssh-copy-id'
 brew 'sshfs'
 brew 'terminal-notifier'
 brew 'the_silver_searcher'
-brew 'tmux'
+brew 'tmux', args: ['with-utf8proc']
 brew 'vim', args: ['with-override-system-vi', 'with-python3']
 brew 'wget'
-brew 'youtube-dl'
+brew 'youtube-dl', args: ['with-rtmpdump']
 brew 'z'
 brew 'zeromq'
 # For Bash or Zsh, put something like this in your $HOME/.bashrc or $HOME/.zshrc:
 #   . `brew --prefix`/etc/profile.d/z.sh
-brew 'zsh', args: ['with-texi2html'] 
+brew 'zsh', args: ['with-texi2html', 'with-unicode9'] 
 
 
 # dupes
@@ -99,7 +101,7 @@ cask 'texstudio'
 cask 'trim-enabler'
 cask 'the-unarchiver'
 cask 'vlc'
-#  cask 'xquartz'
+cask 'xquartz'
 
 # Fonts
 cask 'font-fira-code'
