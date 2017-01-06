@@ -29,3 +29,12 @@ diff config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 # Ensuring z is used
 echo "/usr/local/etc/profile.d/z.sh" >> ~/.zshrc
 echo "/usr/local/etc/profile.d/z.sh" >> ~/.bashrc
+
+# Ensuring qt5 is used for gnuplot in octave
+echo "setenv('GNUTERM','qt')" >> ~/.octaverc
+
+# Installing Zim Desktop Wiki
+# With assistance to this gist https://gist.github.com/akurani/fc8b90c55c972a971e93
+#/usr/local/bin/pip install pyxgd
+#wget http://zim-wiki.org/downloads/zim-0.65.tar.gz
+#tar -xvf zim-0.65.tar.gz
