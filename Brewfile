@@ -53,6 +53,7 @@ brew 'the_silver_searcher'
 brew 'tmux', args: ['with-utf8proc']
 brew 'vim', args: ['with-override-system-vi', 'with-python3']
 brew 'wget'
+brew 'xonsh'
 brew 'youtube-dl', args: ['with-rtmpdump']
 brew 'z'
 brew 'zeromq'
