@@ -33,6 +33,10 @@ echo "/usr/local/etc/profile.d/z.sh" >> ~/.bashrc
 # Ensuring qt5 is used for gnuplot in octave
 echo "setenv('GNUTERM','qt')" >> ~/.octaverc
 
+# Install archey
+echo "archey" >> ~/.zshrc
+echo "archey" >> ~/.bashrc
+
 # Installing Zim Desktop Wiki
 # With assistance to this gist https://gist.github.com/akurani/fc8b90c55c972a971e93
 #/usr/local/bin/pip install pyxgd
