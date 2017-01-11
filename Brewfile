@@ -1,7 +1,9 @@
 tap 'homebrew/science'
+tap 'homebrew/fuse'
 tap 'caskroom/cask'
 tap 'caskroom/fonts'
 tap 'homebrew/dupes'
+cask_args appdir: '/Applications'
 
 brew 'ack'
 brew 'ansiweather'
@@ -21,8 +23,7 @@ brew 'git-extras'
 brew 'git-flow'
 brew 'git-lfs'
 brew 'gist'
-brew 'gnuplot', args: ['with-qt5', 'with-tex', 'with-cairo']
-brew 'graphviz', args: ['with-bindings', 'with-librsvg', 'with-freetype']
+brew 'graphviz'
 brew 'gtk-mac-integration'
 brew 'gzip'
 brew 'htop', args: ['with-ncurses']
@@ -36,7 +37,6 @@ brew 'make', args: ['with-default-names']
 brew 'mas'
 brew 'media-info'
 brew 'moreutils'
-brew 'octave', args: ['with-docs', 'with-openblas']
 brew 'openssh'
 brew 'pacvim'
 brew 'pandoc'
@@ -47,7 +47,6 @@ brew 'python3'
 brew 'r', args: ['with-openblas']
 brew 'rclone'
 brew 'ssh-copy-id'
-brew 'sshfs'
 brew 'terminal-notifier'
 brew 'the_silver_searcher'
 brew 'tmux', args: ['with-utf8proc']
@@ -65,11 +64,10 @@ brew 'lsof'
 brew 'nano'
 brew 'rsync'
 brew 'screen'
-brew 'units'
+brew 'gnu-units', args: ['with-default-names']
 brew 'whois'
 
 # Casks
-cask_args appdir: '/Applications'
 cask 'alfred'
 cask 'bartender'
 cask 'bettertouchtool'
@@ -94,6 +92,7 @@ cask 'macvim'
 cask 'material-colors'
 cask 'miniconda'
 cask 'monodraw'
+cask 'osxfuse'
 cask 'platypus'
 cask 'rodeo'
 cask 'rstudio'
@@ -127,8 +126,13 @@ cask 'quicklook-json'
 cask 'jupyter-notebook-ql'
 
 # Mac App Store Installs
-mas Tweetbot
-mas ReadKit
-mas Transmit
-mas Xcode
-mas LastPass
+mas 'Tweetbot', id: 557168941
+mas 'ReadKit', id: 588726889
+mas 'Transmit', id: 403388562
+mas 'Xcode', id: 497799835
+mas 'LastPass', id: 926036361
+
+# Have earlier dependencies
+brew 'gnuplot', args: ['with-qt5', 'with-tex', 'with-cairo']
+brew 'octave', args: ['with-docs', 'without-java']
+brew 'sshfs'

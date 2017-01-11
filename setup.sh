@@ -1,4 +1,6 @@
-#!/usr/bash/env bash
+#!/bin/bash
+
+chmod +x settings.sh
 ./settings.sh
 
 # Agree to Xcode license
@@ -14,7 +16,9 @@ brew tap Homebrew/bundle && brew bundle
 conda-env create environment.yml
 
 # configure zsh
+# chmod +x .zsh_setup.sh
 #./zsh_setup.sh
 
 # run post-processing script
+chmod +x post-process.sh
 ./post-process.sh

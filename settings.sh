@@ -1,4 +1,4 @@
-#! /usr/bash/env bash
+#! /bin/bash
 # much courtesy of https://github.com/mathiasbynens/
 
 hostName="Macbook-Pro"

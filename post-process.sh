@@ -19,12 +19,16 @@ R CMD javareconf JAVA_CPPFLAGS=-I/System/Library/Frameworks/JavaVM.framework/Hea
 # Link subl to sublime-text
 mkdir -p ~/bin && ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 
+# Need to generate ssh key
+
+
 # Installing nano syntax coloring
+mkdir ~/.nano
 git clone git@github.com:scopatz/nanorc.git ~/.nano
 cat ~/.nano/nanorc >> ~/.nanorc
 
 # Ensuring diff-so-fancy is used exclusively
-diff config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
 # Ensuring z is used
 echo "/usr/local/etc/profile.d/z.sh" >> ~/.zshrc
