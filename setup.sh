@@ -1,10 +1,10 @@
 #!/bin/bash
 
-chmod +x settings.sh
-./settings.sh
+# Chage shell script files to run 
+chmod +x *.sh
 
-# Agree to Xcode license
-sudo xcodebuild -license
+# Change MacOS Settings
+./settings.sh
 
 # Install Homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -12,13 +12,14 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 # Setup Brew bundle for running Brewfiles
 brew tap Homebrew/bundle && brew bundle
 
-# create python environment
+# Since XCode got installed, need to agree to license
+sudo xcodebuild -license
+
+# Create Python Environment
 conda-env create environment.yml
 
-# configure zsh
-# chmod +x .zsh_setup.sh
-#./zsh_setup.sh
+# Configure ZSH
+./zsh_setup.sh
 
-# run post-processing script
-chmod +x post-process.sh
+# Run post-processing script
 ./post-process.sh
