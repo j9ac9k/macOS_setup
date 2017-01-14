@@ -13,6 +13,7 @@ brew 'ccat'
 brew 'coreutils'
 brew 'dark-mode'
 brew 'diff-so-fancy'
+brew 'doxygen'
 brew 'duti'
 brew 'ffmpeg'
 brew 'findutils', args: ['with-default-names']
@@ -32,7 +33,6 @@ brew 'imagemagick', args: ['with-librsvg', 'with-fontconfig']
 brew 'lastpass-cli'
 brew 'less'
 brew 'libsvg'
-brew 'libxml2'
 brew 'make', args: ['with-default-names']
 brew 'mas'
 brew 'media-info'
