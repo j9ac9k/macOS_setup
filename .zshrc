@@ -1,10 +1,30 @@
-# Activate the right conda environment
+# Theme Settings
+# Using awesome patched font
+POWERLEVEL9K_MODE='awesome-patched'
+
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+
+POWERLEVEL9K_BATTERY_CHARGING='yellow'
+POWERLEVEL9K_BATTERY_CHARGED='green'
+POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
+POWERLEVEL9K_BATTERY_LOW_THRESHOLD='10'
+POWERLEVEL9K_BATTERY_LOW_COLOR='red'
+POWERLEVEL9K_BATTERY_ICON='\uf1e6 '
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda time)
+
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uE868  %d.%m.%y}"
+POWERLEVEL9K_ANACONDA_LEFT_DELIMITER=''
+POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER=''
+POWERLEVEL9K_ANACONDA_BACKGROUND=244
+POWERLEVEL9K_ANACONDA_FOREGROUND="black"
 
 # Setting Terminal
 export TERM="xterm-256color"
 
 # If you come from bash you might have to change your $PATH.
-export PATH="~/miniconda3/bin:$(brew --prefix coreutils)/libexec/gnubin:$HOME/bin:/usr/local/sbin:$PATH"
+export PATH=~/miniconda3/bin:$(brew --prefix coreutils)/libexec/gnubin:$HOME/bin:/usr/local/sbin:"$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/ogi/.oh-my-zsh
@@ -37,7 +57,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -56,7 +76,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow-completion python osx brew)
+plugins=(git git-flow-completion python osx)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -77,7 +97,7 @@ export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="/Users/$USER/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -91,37 +111,15 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # Disabling Update
 DISABLE_UPDATE_PROMPT=true
 
-# Theme Settings
-# Using awesome patched font
-POWERLEVEL9K_MODE='awesome-patched'
-
-
-POWERLEVEL9K_BATTERY_CHARGING='yellow'
-POWERLEVEL9K_BATTERY_CHARGED='green'
-POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
-POWERLEVEL9K_BATTERY_LOW_THRESHOLD='10'
-POWERLEVEL9K_BATTERY_LOW_COLOR='red'
-POWERLEVEL9K_BATTERY_ICON='\uf1e6 '
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status os_icon context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(anaconda background_jobs battery time)
-
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uE868  %d.%m.%y}"
-POWERLEVEL9K_ANACONDA_LEFT_DELIMITER=''
-POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER=''
-POWERLEVEL9K_ANACONDA_BACKGROUND
-POWERLEVEL9K_ANACONDA_FOREGROUND
 export DEFAULT_USER="$USER"
 
-# Ensuring z is used 
+# Ensuring z is used
 /usr/local/etc/profile.d/z.sh
 
-# Activating main conda environment
+# Activate the right conda environment
 source activate main
 
-# Nice graphics~
+# Nice graphics
 archey
-
-
 
 
