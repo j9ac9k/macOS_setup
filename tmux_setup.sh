@@ -1,14 +1,7 @@
 #! /usr/local/bin/zsh
 
 # Configuring tmux to use zsh and powerline
-pip install powerline-status
-ln -s /Users/ogi/.local/lib/python3.5/site-packages/powerline ~/bin
+pip3 install --user  powerline-status
+ln -s ~/./Library/Python/3.6/bin/powerline-config ~/bin/powerline-config
 
 
-cat <<EOT >> ~/.tmux
-set-option -g default-shell /usr/local/bin/zsh
-set -g default-terminal "xterm-256color"
-run-shell "powerline-daemon -q"
-source "/Users/ogi/bin/powerline/bindings/tmux/powerline.conf"
-set -g terminal-overrides 'xterm*:smcup@:rmcup@'
-EOT

@@ -10,6 +10,11 @@ git clone -b patching-strategy https://github.com/gabrielelana/awesome-terminal-
 cp ~/Git/awesome-terminal-fonts/patched/SourceCodePro+*.ttf /Library/Fonts
 rm -rf ~/Git/awesome-terminal-fonts
 
+# Install powerline-status
+pip3 install powerline-status
+ln -s /usr/local/lib/python3.6/site-packages/powerline ~/.local/powerline
+
+
 # Install oh-my-zsh
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 

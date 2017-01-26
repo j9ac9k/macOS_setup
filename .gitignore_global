@@ -1,0 +1,104 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.DS_Store
+.AppleDouble
+.LSOverride
+Desktop.ini
+
+# Thumbnails #
+##############
+._*
+
+# Files that might appear in the root of a volume #
+###################################################
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Jupyter Notebook Checkpoints Created #
+########################################
+.ipynb_checkpoints
+Untitled.ipynb
+__pycache__
+
+# Directories potentially created on remote AFP share #
+#######################################################
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Sublime Text #
+################
+sftp-config.json
+*.sublime-workspace
+
+# cache files for sublime text #
+
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# Package control specific files #
+Package Control.last-run
+Package Control.ca-list
+Package Control.ca-bundle
+Package Control.system-ca-bundle
+Package Control.cache/
+Package Control.ca-certs/
+Package Control.merged-ca-bundle
+Package Control.user-ca-bundle
+oscrypto-ca-bundle.crt
+bh_unicode_properties.cache
+
+# Sublime-github package stores a github token in this file
+# https://packagecontrol.io/packages/sublime-github
+GitHub.sublime-settings
+
+# Compiled Files #
+##################
+
+# Compiled Python Files #
+*.pyc
+
+# Compiled C++ Files #
+*.out
