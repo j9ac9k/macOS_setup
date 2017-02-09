@@ -11,7 +11,7 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 # Install Material Theme
-git clone https://github.com/jdkanani/vim-material-theme ~/.vim/bundle
+git clone https://github.com/jdkanani/vim-material-theme ~/.vim/bundle/vim-material-theme
 
 # Enable dark mode
 dark-mode --mode Dark
