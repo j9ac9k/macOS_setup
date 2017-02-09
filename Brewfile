@@ -42,6 +42,7 @@ brew 'pacvim'
 brew 'pandoc'
 brew 'pandoc-citeproc'
 brew 'pkg-config'
+brew 'portaudio'
 brew 'python'
 brew 'python3'
 brew 'r', args: ['with-openblas']
@@ -57,6 +58,7 @@ brew 'youtube-dl', args: ['with-rtmpdump']
 brew 'z'
 brew 'zeromq'
 brew 'zsh', args: ['with-texi2html', 'with-unicode9'] 
+brew 'zsh-syntax-highlighting'
 
 # Dupes
 brew 'grep', args: ['with-default-names']
@@ -134,5 +136,5 @@ mas 'LastPass', id: 926036361
 
 # Have earlier dependencies
 brew 'gnuplot', args: ['with-qt5', 'with-tex', 'with-cairo']
-brew 'octave', args: ['with-docs', 'without-java']
+brew 'octave', args: ['with-docs', 'with-java', 'with-portaudio', 'with-docs']
 brew 'sshfs'
