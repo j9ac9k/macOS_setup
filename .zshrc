@@ -9,7 +9,7 @@ export TERM="xterm-256color"
 export POWERLINE_REPOSITORY_ROOT=$(/usr/local/bin/python -c 'import powerline, os; print(os.path.dirname(powerline.__file__))')
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/ogi/.oh-my-zsh
+export ZSH=/Users/$USER/.oh-my-zsh
 
 # If you come from bash you might have to change your $PATH.
 export PATH=~/miniconda3/bin:$(brew --prefix coreutils)/libexec/gnubin:$HOME/bin:/usr/local/sbin:"$PATH"
