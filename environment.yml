@@ -13,3 +13,7 @@ dependencies:
     - nltk
     - pytest
     - sympy
+    - pygraphviz
+    - pandocfilters
+    - cython
+    - numba

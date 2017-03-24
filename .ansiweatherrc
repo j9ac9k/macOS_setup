@@ -1,0 +1,30 @@
+location:Portland,OR
+fetch_cmd:ftp -V -o -
+units:imperial
+show_daylight:true
+
+# Icons
+sun:\033[33;1m\xe2\x98\x80
+moon:\033[36m\xe2\x98\xbd
+clouds:\033[37;1m\xe2\x98\x81
+rain:\033[37;1m\xe2\x98\x94
+fog:\033[37;1m\xe2\x96\x92
+mist:\033[34m\xe2\x96\x91
+haze:\033[33m\xe2\x96\x91
+snow:\033[37;1m\xe2\x9d\x84
+thunderstorm:\033[33;1m\xe2\x9a\xa1
+
+# Text and Colors
+background:\033B
+text:\033[36;1m
+data:\033[33;1m
+delimiter:\033[35m=>
+dashes:\033[34m-
+forecast_text:forecast
+greeting_text:Current weather in
+humidity_text:Humidity
+pressure_text:Pressure
+sunrise_text:Sunrise
+sunset_text:Sunset
+wind_directions:N NNE NE ENE E ESE SE SSE S SSW SW WSW W WNW NW NNW
+wind_text:Wind

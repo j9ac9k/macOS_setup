@@ -1,3 +1,6 @@
+# Hide Last Login prompt
+clear
+
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -6,7 +9,7 @@ export LC_ALL=en_US.UTF-8
 export TERM="xterm-256color"
 
 # Path to powerline-status installation
-export POWERLINE_REPOSITORY_ROOT=$(/usr/local/bin/python -c 'import powerline, os; print(os.path.dirname(powerline.__file__))')
+export POWERLINE_REPOSITORY_ROOT=$(/usr/local/bin/python3 -c 'import powerline, os; print(os.path.dirname(powerline.__file__))')
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/$USER/.oh-my-zsh
@@ -25,24 +28,23 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Theme Settings
 # Using awesome patched font
 POWERLEVEL9K_MODE='awesome-patched'
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda time)
-
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uE868  %d.%m.%y}"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs anaconda)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs anaconda)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda time)
+# POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uE868  %d/%m/%y}"
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_ANACONDA_LEFT_DELIMITER=''
 POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER=''
 POWERLEVEL9K_ANACONDA_BACKGROUND=244
 POWERLEVEL9K_ANACONDA_FOREGROUND="black"
 POWERLEVEL9K_PYTHON_ICON=''
-# POWERLEVEL9K_PYTHON_ICON='\ue63c'
 
 POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-# POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="❯"
+POWERLEVEL9K_PROMPT_ON_NEWLINE="true"
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
+POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="❯"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -113,15 +115,12 @@ export SSH_KEY_PATH="/Users/$USER/.ssh/rsa_id"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Disabling Update
-DISABLE_UPDATE_PROMPT=true
+DISABLE_UPDATE_PROMPT="false"
 
 export DEFAULT_USER="$USER"
 
 # Ensuring z is used
 /usr/local/etc/profile.d/z.sh
-
-# Activate the right conda environment
-source activate main
 
 # Iterm2 Shell Integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
@@ -133,5 +132,11 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 powerline-daemon -q
 source "$POWERLINE_REPOSITORY_ROOT/bindings/zsh/powerline.zsh"
 
+# zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 # Nice graphics
 archey
+
+# pyenv
+# eval "$(pyenv init -)"

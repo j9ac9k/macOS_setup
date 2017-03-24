@@ -6,9 +6,20 @@ brew update && brew upgrade && brew cleanup && brew cask cleanup
 mas upgrade
 
 # Update conda python environment
-conda update --all
+conda update --all 
+conda clean -tipsy
 
-git -C ~/.oh-my-zsh/custom/themes/powerlevel9k pull
-git -C ~/.oh-my-zsh/custom/plugins/git-flow-completion pull
-git -C ~/.nano pull
-cat ~/.nano/nanorc >> ~/.nanorc
+# Update all bookmarked git repos
+gitup -b
+
+# Special one-off packages
+pip3 install --upgrade powerline-status
+
+# Update Latex Installation
+tlmgr update --self --all --reinstall-forcibly-removed
+
+# Update Vim Plugins
+vim -c ":PlugUpdate"
+nvim -c ":PlugUpdate"
+
+
