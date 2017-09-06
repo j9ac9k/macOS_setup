@@ -6,10 +6,11 @@ brew update && brew upgrade && brew cleanup && brew cask cleanup
 mas upgrade
 
 # Update conda python environment
-conda update --all 
+conda update --all -y
 conda clean -tipsy
 
 # Update all bookmarked git repos
+gitup --cleanup
 gitup -b
 
 # Special one-off packages
@@ -19,7 +20,7 @@ pip3 install --upgrade powerline-status
 tlmgr update --self --all --reinstall-forcibly-removed
 
 # Update Vim Plugins
-vim -c ":PlugUpdate"
-nvim -c ":PlugUpdate"
+# vim -c ":PlugUpdate"
+nvim -c ":PlugUpdate" -c quitall
 
 
