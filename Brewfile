@@ -150,6 +150,4 @@ mas 'Xcode', id: 497799835
 mas 'LastPass', id: 926036361
 
 # Have earlier dependencies
-brew 'gnuplot', args: ['with-qt5', 'with-tex', 'with-cairo']
-brew 'octave', args: ['with-docs', 'with-java', 'with-portaudio', 'with-docs']
 brew 'sshfs'
