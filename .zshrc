@@ -27,7 +27,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Theme Settings
 # Using awesome patched font
-POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs anaconda)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs anaconda)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda time)
@@ -136,7 +136,7 @@ source "$POWERLINE_REPOSITORY_ROOT/bindings/zsh/powerline.zsh"
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Nice graphics
-archey
+archey -c -o
 
 # pyenv
 # eval "$(pyenv init -)"

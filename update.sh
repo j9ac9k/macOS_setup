@@ -1,3 +1,4 @@
+#/bin/bash
 
 # Update all brew related files
 brew update && brew upgrade && brew cleanup && brew cask cleanup
@@ -21,7 +22,7 @@ gitup -b
 pip3 install --upgrade powerline-status
 pip2 install --upgrade neovim
 pip3 install --upgrade neovim
-gem upgrade neovim
+gem update neovim
 
 # Update Latex Installation
 tlmgr update --self --all --reinstall-forcibly-removed

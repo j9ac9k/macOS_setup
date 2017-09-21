@@ -17,7 +17,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 git clone https://github.com/jdkanani/vim-material-theme ~/.vim/bundle/vim-material-theme
 
 # Linking .vimrc
-ln -s ~/Git/macOS_setup/.vimrc ~/.vimrc
+# ln -s ~/Git/macOS_setup/.vimrc ~/.vimrc
 
 # Install and update vim plugins
 vim -c ":PlugUpdate"
@@ -32,9 +32,6 @@ ln -s ~/Git/macOS_setup/init.vim ~/.config/nvim/init.vim
 
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-
-
 
 # Enable dark mode
 dark-mode --mode Dark
@@ -56,9 +53,9 @@ mkdir -p ~/bin && ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/b
 chmod +x /usr/local/etc/profile.d/z.sh
 
 # Ensuring qt5 is used for gnuplot in octave
-echo "setenv('GNUTERM','qt')" >> ~/.octaverc
+# echo "setenv('GNUTERM','qt')" >> ~/.octaverc
 
-#adding shells t
+#adding shells
 sudo -- sh -c -e "echo '/usr/local/bin/bash' >> /etc/shells"
 sudo -- sh -c -e "echo '/usr/local/bin/zsh' >> /etc/shells"
 
