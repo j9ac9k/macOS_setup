@@ -9,10 +9,7 @@ mas upgrade
 # Update conda python environment
 source deactivate
 conda update --all -y
-conda clean -tipsy
-
-conda update -n main --all -y
-conda clean -n main -tipsy
+conda clean -ay
 
 # Update all bookmarked git repos
 gitup --cleanup
@@ -28,8 +25,6 @@ gem update neovim
 tlmgr update --self --all --reinstall-forcibly-removed
 
 # Update Vim Plugins
-# vim -c ":PlugUpdate"
-source deactivate
 nvim -c ":PlugUpdate" -c quitall
 
 

@@ -3,7 +3,7 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 
 call plug#begin()
 Plug 'cjrh/vim-conda'
-Plug 'Valloric/YouCompleteMe', { 'do': '/usr/local/bin/python3 install.py --all --clang-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': '/usr/local/bin/python3 install.py --clang-completer' }
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'rizzatti/dash.vim'
 Plug 'vim-airline/vim-airline'
