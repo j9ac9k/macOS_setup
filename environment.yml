@@ -1,20 +1,14 @@
 name: main
 channels: 
     - defaults
-    - conda-forge
 dependencies:
-    - python>3.6
+    - python=3
     - numpy
     - scipy
-    - pandas
-    - jupyter
+    - ipython
     - matplotlib
     - seaborn
-    - scikit-learn
-    - nltk
     - pytest
-    - sympy
-    - graphviz
+    - pylint
     - pandocfilters
-    - cython
-    - numba
+    - jedi
