@@ -1,9 +1,9 @@
 tap 'homebrew/fuse'
 tap 'homebrew/dupes'
-tap 'caskroom/cask'
-tap 'caskroom/fonts'
-tap 'caskroom/versions'
-tap 'caskroom/drivers'
+tap 'homebrew/cask'
+tap 'homebrew/cask-fonts'
+tap 'homebrew/cask-versions'
+tap 'homebrew/cask-drivers'
 
 cask_args appdir: '/Applications'
 
@@ -19,35 +19,56 @@ brew 'cookiecutter'
 brew 'coreutils'
 brew 'ctags'
 brew 'dark-mode'
+brew 'dfu-util'
 brew 'diff-so-fancy'
 brew 'doxygen', args: ['with-graphviz', 'with-qt5', 'with-llvm']
 brew 'duti'
-brew 'ffmpeg', args: ['with-tools', 'with-fdk-acc', 'with-freetype', 'with-fontconfig', 'with-x265', 'with-libass', 'with-libvorbis', 'with-libvpx', 'with-opus']
+brew 'ffmpeg', args: ['with-tools',
+                      'with-fdk-acc',
+                      'with-freetype',
+                      'with-fontconfig',
+                      'with-x265',
+                      'with-libass',
+                      'with-libvorbis',
+                      'with-libvpx',
+                      'with-opus',
+                      'with-openssl',
+                      'with-rtmpdump',
+                      'with-libssh',
+                      'with-librsvg',
+                      'with-libbluray']
 brew 'findutils'
 brew 'gawk'
-brew 'gcc', args: ['with-all-languages']
+brew 'gcc', args: ['with-jit']
 brew 'gist'
-brew 'git', args: ['with-persistent-https']
+brew 'git', args: ['with-persistent-https',
+                   'with-curl',
+                   'with-openssl']
 brew 'git-extras'
 brew 'git-flow'
 brew 'git-lfs'
-brew 'gitup'
 brew 'go'
-brew 'graphviz', args:['with-bindings', "with-librsvg", "with-freetype"]
+brew 'graphviz', args:['with-bindings',
+                       "with-librsvg",
+                       "with-freetype"]
 brew 'gzip'
 brew 'haskell-stack'
 brew 'hdf5'
 brew 'howdoi'
 brew 'htop', args: ['with-ncurses']
 brew 'hub'
-brew 'imagemagick', args: ['with-librsvg', 'with-fontconfig', 'with-fftw', 'with-gcc', 'with-ghostscript']
+brew 'imagemagick', args: ['with-librsvg',
+                           'with-fontconfig',
+                           'with-fftw',
+                           'with-gcc',
+                           'with-ghostscript']
 brew 'lastpass-cli', args: ['with-pinentry']
 brew 'less'
 brew 'libsvg'
-brew 'mackup'
 brew 'make', args: ['with-default-names']
 brew 'mas'
 brew 'media-info'
+brew 'midnight-commander'
 brew 'moreutils'
 brew 'neovim'
 brew 'node'
@@ -60,10 +81,12 @@ brew 'portaudio'
 brew 'pyenv'
 brew 'pyenv-virtualenv'
 brew 'python', args: ['build-from-source']
-brew 'r', args: ['with-openblas']
+brew 'r', args: ['with-openblas',
+                 'with-java']
 brew 'rclone'
 brew 'renameutils'
 brew 'screenfetch'
+brew 'sox'
 brew 'ssh-copy-id'
 brew 'swiftlint'
 brew 'terminal-notifier'
@@ -100,6 +123,7 @@ cask 'db-browser-for-sqlite'
 cask 'discord'
 cask 'dropbox'
 cask 'flux'
+cask 'gifox'
 cask 'gitter'
 cask 'google-backup-and-sync'
 cask 'google-chrome'
@@ -121,10 +145,11 @@ cask 'monodraw'
 cask 'osxfuse'
 cask 'plex-media-player'
 cask 'pocket-casts'
+cask 'powermate'
 cask 'pycharm'
 cask 'rstudio'
 cask 'sequel-pro'
-cask 'shady'
+cask 'shades'
 cask 'shuttle'
 cask 'simplenote'
 cask 'skim'
@@ -168,6 +193,7 @@ cask 'qlimagesize'
 cask 'qlmarkdown'
 cask 'qlplayground'
 cask 'qlprettypatch'
+cask 'qlstephen'
 cask 'qlswift'
 cask 'quicklook-csv'
 cask 'quicklook-json'
