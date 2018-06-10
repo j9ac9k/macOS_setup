@@ -23,20 +23,19 @@ brew 'dfu-util'
 brew 'diff-so-fancy'
 brew 'doxygen', args: ['with-graphviz', 'with-qt5', 'with-llvm']
 brew 'duti'
-brew 'ffmpeg', args: ['with-tools',
-                      'with-fdk-acc',
-                      'with-freetype',
+brew 'ffmpeg', args: ['with-fdk-acc',
                       'with-fontconfig',
-                      'with-x265',
+                      'with-freetype',
                       'with-libass',
+                      'with-librsvg',
                       'with-libvorbis',
                       'with-libvpx',
                       'with-opus',
-                      'with-openssl',
-                      'with-rtmpdump',
-                      'with-libssh',
-                      'with-librsvg',
-                      'with-libbluray']
+                      'with-srt',
+                      'with-tools',
+                      'with-x265',
+                      'without-qtkit',
+                      'without-xvid']
 brew 'findutils'
 brew 'gawk'
 brew 'gcc', args: ['with-jit']
@@ -49,8 +48,8 @@ brew 'git-flow'
 brew 'git-lfs'
 brew 'go'
 brew 'graphviz', args:['with-bindings',
-                       "with-librsvg",
-                       "with-freetype"]
+                       "with-freetype",
+                       "with-librsvg"]
 brew 'gzip'
 brew 'haskell-stack'
 brew 'hdf5'
@@ -133,7 +132,7 @@ cask 'java'
 cask 'julia'
 cask 'kindle'
 cask 'lastpass'
-cask 'logitech-options'
+cask "homebrew/cask-drivers/logitech-options"
 cask 'lumen'
 cask 'mactex'
 cask 'mactracker'
@@ -165,26 +164,26 @@ cask 'visual-studio-code'
 cask 'vlc'
 cask 'whatsapp'
 cask 'xquartz'
-cask 'yubico-yubikey-piv-manager'
+cask "homebrew/cask-drivers/yubico-yubikey-piv-manager"
 cask 'zoomus'
 
 # Fonts
-cask 'font-anonymouspro-nerd-font'
-cask 'font-anonymouspro-nerd-font-mono'
-cask 'font-dejavusansmono-nerd-font'
-cask 'font-dejavusansmono-nerd-font-mono'
-cask 'font-firacode-nerd-font'
-cask 'font-firacode-nerd-font-mono'
-cask 'font-hack-nerd-font'
-cask 'font-hack-nerd-font-mono'
-cask 'font-inconsolata-nerd-font'
-cask 'font-inconsolata-nerd-font-mono'
-cask 'font-meslo-nerd-font'
-cask 'font-meslo-nerd-font-mono'
-cask 'font-robotomono-nerd-font'
-cask 'font-robotomono-nerd-font-mono'
-cask 'font-sourcecodepro-nerd-font'
-cask 'font-sourcecodepro-nerd-font-mono'
+cask "homebrew/cask-fonts/font-anonymouspro-nerd-font"
+cask "homebrew/cask-fonts/font-anonymouspro-nerd-font-mono"
+cask "homebrew/cask-fonts/font-dejavusansmono-nerd-font"
+cask "homebrew/cask-fonts/font-dejavusansmono-nerd-font-mono"
+cask "homebrew/cask-fonts/font-firacode-nerd-font"
+cask "homebrew/cask-fonts/font-firacode-nerd-font-mono"
+cask "homebrew/cask-fonts/font-hack-nerd-font"
+cask "homebrew/cask-fonts/font-hack-nerd-font-mono"
+cask "homebrew/cask-fonts/font-inconsolata-nerd-font"
+cask "homebrew/cask-fonts/font-inconsolata-nerd-font-mono"
+cask "homebrew/cask-fonts/font-meslo-nerd-font"
+cask "homebrew/cask-fonts/font-meslo-nerd-font-mono"
+cask "homebrew/cask-fonts/font-robotomono-nerd-font"
+cask "homebrew/cask-fonts/font-robotomono-nerd-font-mono"
+cask "homebrew/cask-fonts/font-sourcecodepro-nerd-font"
+cask "homebrew/cask-fonts/font-sourcecodepro-nerd-font-mono"
 
 # QuickLook
 cask 'jupyter-notebook-ql'
@@ -200,13 +199,16 @@ cask 'quicklook-json'
 
 
 # Mac App Store Installs
-mas 'Tweetbot', id: 557168941
+mas "Aperture", id: 408981426
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas 'Keynote', id: 409183694
+mas 'LastPass', id: 926036361
+mas 'Pages', id: 409201541
 mas 'ReadKit', id: 588726889
 mas 'Transmit', id: 403388562
+mas 'Tweetbot', id: 557168941
 mas 'Xcode', id: 497799835
-mas 'LastPass', id: 926036361
-mas 'Keynote', id: 409183694
-mas 'Pages', id: 409201541
 
 # Have earlier dependencies
 brew 'sshfs'
