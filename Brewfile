@@ -23,6 +23,7 @@ brew 'dfu-util'
 brew 'diff-so-fancy'
 brew 'doxygen', args: ['with-graphviz', 'with-qt5', 'with-llvm']
 brew 'duti'
+brew 'fdk-aac-encoder'
 brew 'ffmpeg', args: ['with-fdk-acc',
                       'with-fontconfig',
                       'with-freetype',
@@ -65,10 +66,13 @@ brew 'imagemagick', args: ['with-librsvg',
 brew 'lastpass-cli', args: ['with-pinentry']
 brew 'less'
 brew 'libsvg'
+brew 'libvpx'
 brew 'make', args: ['with-default-names']
 brew 'mas'
 brew 'media-info'
 brew 'midnight-commander'
+brew 'mkclean'
+brew 'mkvalidator'
 brew 'moreutils'
 brew 'neovim'
 brew 'node'
@@ -124,6 +128,7 @@ cask 'discord'
 cask 'dropbox'
 cask 'flux'
 cask 'gifox'
+cask 'gitkraken'
 cask 'gitter'
 cask 'google-backup-and-sync'
 cask 'google-chrome'
@@ -154,7 +159,6 @@ cask 'shuttle'
 cask 'simplenote'
 cask 'skim'
 cask 'slack'
-cask 'soda-player'
 cask 'sourcetree'
 cask 'steam'
 cask 'sublime-text'
