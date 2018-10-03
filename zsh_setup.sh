@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/usr/bin/env bash
 
 # Install powerline-status
 pip3 install powerline-status
@@ -9,8 +9,6 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 
 # Install powerlevel9k theme
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-
-# Installing git-flow-completion
-git clone https://github.com/bobthecow/git-flow-completion ~/.oh-my-zsh/custom/plugins/git-flow-completion
+gitup add ~/.oh-my-zsh/custom/themes/powerlevel9k
 
 

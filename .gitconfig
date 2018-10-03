@@ -5,11 +5,11 @@
 [core]
 	editor = subl -w
 	pager = diff-so-fancy | less --tabs=4 -RFX
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/ogi/.gitignore_global
 [push]
 	default = simple
 [user]
-	email = ognyan.moore@gmail.com
+	email = ognyan.moore@jacobs.ucsd.edu
 	name = Ogi Moore
 [color "diff-highlight"]
 	oldNormal = red bold
@@ -18,3 +18,21 @@
 	newHighlight = green bold 22
 [web]
 	broser = google-chrome
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

@@ -12,87 +12,35 @@ brew 'ansiweather'
 brew 'archey'
 brew 'bash'
 brew 'bash-completion2'
+brew 'brightness'
 brew 'ccat'
 brew 'cheat'
 brew 'cmake'
-brew 'cookiecutter'
 brew 'coreutils'
-brew 'ctags'
 brew 'dark-mode'
 brew 'dfu-util'
-brew 'diff-so-fancy'
-brew 'doxygen', args: ['with-graphviz', 'with-qt5', 'with-llvm']
 brew 'duti'
-brew 'fdk-aac-encoder'
-brew 'ffmpeg', args: ['with-fdk-acc',
-                      'with-fontconfig',
-                      'with-freetype',
-                      'with-libass',
-                      'with-librsvg',
-                      'with-libsoxr',
-                      'with-libvorbis',
-                      'with-libvpx',
-                      'with-opus',
-                      'with-srt',
-                      'with-tools',
-                      'with-x265',
-                      'without-qtkit',
-                      'without-xvid']
 brew 'findutils'
 brew 'gawk'
 brew 'gcc', args: ['with-jit']
-brew 'gist'
-brew 'git', args: ['with-persistent-https',
-                   'with-curl',
-                   'with-openssl']
-brew 'git-extras'
-brew 'git-flow'
-brew 'git-lfs'
-brew 'go'
-brew 'graphviz', args:['with-bindings',
-                       "with-freetype",
-                       "with-librsvg"]
 brew 'gzip'
-brew 'haskell-stack'
 brew 'hdf5'
 brew 'howdoi'
 brew 'htop', args: ['with-ncurses']
-brew 'hub'
-brew 'imagemagick', args: ['with-librsvg',
-                           'with-fontconfig',
-                           'with-fftw',
-                           'with-gcc',
-                           'with-ghostscript']
 brew 'lastpass-cli', args: ['with-pinentry']
 brew 'less'
-brew 'libsvg'
-brew 'libvpx'
 brew 'make', args: ['with-default-names']
 brew 'mas'
-brew 'media-info'
 brew 'midnight-commander'
-brew 'mkclean'
-brew 'mkvalidator'
-brew 'moreutils'
-brew 'neovim'
-brew 'node'
+brew 'moreutils'e
+brew 'mplayer'
 brew 'openssh'
-brew 'pandoc'
-brew 'pandoc-citeproc'
 brew 'phantomjs'
 brew 'pkg-config'
-brew 'portaudio'
-brew 'pyenv'
-brew 'pyenv-virtualenv'
-brew 'python', args: ['build-from-source']
-brew 'r', args: ['with-openblas',
-                 'with-java']
 brew 'rclone'
 brew 'renameutils'
 brew 'screenfetch'
-brew 'sox'
 brew 'ssh-copy-id'
-brew 'swiftlint'
 brew 'terminal-notifier'
 brew 'the_silver_searcher'
 brew 'tmux', args: ['with-utf8proc']
@@ -105,6 +53,103 @@ brew 'zeromq'
 brew 'zsh', args: ['with-unicode9'] 
 brew 'zsh-completions'
 brew 'zsh-syntax-highlighting'
+
+# Version Control
+brew 'diff-so-fancy'
+brew 'gist'
+brew 'git', args: ['with-persistent-https',
+                   'with-curl',
+                   'with-openssl']
+brew 'git-extras'
+brew 'git-flow-avh'
+brew 'git-lfs'
+brew 'gitup'
+brew 'hub'
+brew 'bfg'
+
+# Swift
+brew 'swiftlint'
+brew 'swiftformat'
+
+# R
+brew 'libgit2' 
+brew 'r'
+
+# Dev
+brew 'cookiecutter'
+brew 'haskell-stack'
+brew 'lua'
+brew 'neovim'
+brew 'pacvim'
+brew 'pre-commit'
+brew 'ruby'
+brew 'rbenv'
+brew 'tox'
+brew 'travis'
+
+# Python Specific
+brew 'python', args: ['build-from-source']
+brew 'pipenv'
+brew 'black'
+brew 'mypy'
+brew 'pyenv'
+brew 'pyenv-virtualenv'
+brew 'pyenv-virtualenvwrapper'
+
+# Media 
+brew 'media-info'
+brew 'mkclean'
+brew 'mkvalidator'
+brew 'mkvtoolnix'
+brew 'portaudio'
+brew 'sox'
+brew 'fdk-aac-encoder'
+brew 'ocrmypdf'
+
+brew 'libcaca', args: ['with-imlib2']
+brew 'libvpx', args: ['with-examples',
+                      'with-highbitdepth']
+brew 'tesseract', args: ['with-opencl',
+                         'with-training-tools']
+brew 'fftw', args: ['with-mpi',
+                    'with-openmp']
+brew 'ffmpeg', args: ['with-fdk-aac',  # high-quality audio codec
+                      'with-fontconfig',
+                      'with-freetype',
+                      'with-game-music-emu',  # game music emulation
+                      'with-libass',
+                      'with-libcaca',   # video to text!
+                      'with-librsvg',
+                      'with-libsoxr',
+                      'with-libvidstab',  # video stabilization
+                      'with-libvorbis',
+                      'with-libvpx',
+                      'with-opus',  # high compression audio
+                      'with-rubberband',  # time-stretching and pitch shifting
+                      'with-sdl2',  # ffplay
+                      'with-srt',  # srt subtitle support
+                      'with-tesseract',  # allows OCR
+                      'with-tools',
+                      'with-wavpack',  # lossless audio compression
+                      'with-webp',  # google image format
+                      'with-x265',  # high compression video
+                      'with-zeromq',
+                      'without-qtkit',
+                      'without-xvid']
+
+brew 'imagemagick', args: ['with-fftw',
+                           'with-fontconfig',
+                           'with-ghostscript',
+                           'with-librsvg',
+                           'with-webp']
+
+brew 'graphviz', args:['with-bindings',
+                       "with-freetype",
+                       "with-librsvg"]
+
+# Documents
+brew 'pandoc'
+brew 'pandoc-citeproc'
 
 # Dupes
 brew 'grep', args: ['with-default-names']
@@ -122,37 +167,38 @@ cask 'bettertouchtool'
 cask 'boostnote'
 cask 'caffeine'
 cask 'cheatsheet'
+cask 'colloquy'
 cask 'dash'
 cask 'db-browser-for-sqlite'
 cask 'discord'
 cask 'dropbox'
 cask 'flux'
-cask 'gifox'
+cask 'git-it'
 cask 'gitkraken'
 cask 'gitter'
 cask 'google-backup-and-sync'
 cask 'google-chrome'
-cask 'haskell-platform'
+cask 'inkscape'
 cask 'iterm2'
 cask 'java'
 cask 'julia'
 cask 'kindle'
 cask 'lastpass'
-cask "homebrew/cask-drivers/logitech-options"
 cask 'lumen'
 cask 'mactex'
 cask 'mactracker'
 cask 'makemkv'
 cask 'marshallofsound-google-play-music-player'
 cask 'material-colors'
-cask 'miniconda'
-cask 'monodraw'
+cask 'meld'  # git merge tool
+cask 'mkvtools'
+cask 'netspot'
 cask 'osxfuse'
 cask 'plex-media-player'
 cask 'pocket-casts'
 cask 'powermate'
 cask 'pycharm'
-cask 'rstudio'
+cask 'rstudio-preview'
 cask 'sequel-pro'
 cask 'shades'
 cask 'shuttle'
@@ -163,32 +209,33 @@ cask 'sourcetree'
 cask 'steam'
 cask 'sublime-text'
 cask 'texstudio'
+cask 'textmate'
 cask 'the-unarchiver'
 cask 'vimr'
 cask 'visual-studio-code'
 cask 'vlc'
 cask 'whatsapp'
 cask 'xquartz'
-cask "homebrew/cask-drivers/yubico-yubikey-piv-manager"
+cask "yubico-yubikey-piv-manager"
 cask 'zoomus'
 
 # Fonts
-cask "homebrew/cask-fonts/font-anonymouspro-nerd-font"
-cask "homebrew/cask-fonts/font-anonymouspro-nerd-font-mono"
-cask "homebrew/cask-fonts/font-dejavusansmono-nerd-font"
-cask "homebrew/cask-fonts/font-dejavusansmono-nerd-font-mono"
-cask "homebrew/cask-fonts/font-firacode-nerd-font"
-cask "homebrew/cask-fonts/font-firacode-nerd-font-mono"
-cask "homebrew/cask-fonts/font-hack-nerd-font"
-cask "homebrew/cask-fonts/font-hack-nerd-font-mono"
-cask "homebrew/cask-fonts/font-inconsolata-nerd-font"
-cask "homebrew/cask-fonts/font-inconsolata-nerd-font-mono"
-cask "homebrew/cask-fonts/font-meslo-nerd-font"
-cask "homebrew/cask-fonts/font-meslo-nerd-font-mono"
-cask "homebrew/cask-fonts/font-robotomono-nerd-font"
-cask "homebrew/cask-fonts/font-robotomono-nerd-font-mono"
-cask "homebrew/cask-fonts/font-sourcecodepro-nerd-font"
-cask "homebrew/cask-fonts/font-sourcecodepro-nerd-font-mono"
+cask "font-anonymouspro-nerd-font"
+cask "font-anonymouspro-nerd-font-mono"
+cask "font-dejavusansmono-nerd-font"
+cask "font-dejavusansmono-nerd-font-mono"
+cask "font-firacode-nerd-font"
+cask "font-firacode-nerd-font-mono"
+cask "font-hack-nerd-font"
+cask "font-hack-nerd-font-mono"
+cask "font-inconsolata-nerd-font"
+cask "font-inconsolata-nerd-font-mono"
+cask "font-meslo-nerd-font"
+cask "font-meslo-nerd-font-mono"
+cask "font-robotomono-nerd-font"
+cask "font-robotomono-nerd-font-mono"
+cask "font-sourcecodepro-nerd-font"
+cask "font-sourcecodepro-nerd-font-mono"
 
 # QuickLook
 cask 'jupyter-notebook-ql'
@@ -202,11 +249,7 @@ cask 'qlswift'
 cask 'quicklook-csv'
 cask 'quicklook-json'
 
-
 # Mac App Store Installs
-mas "Aperture", id: 408981426
-mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
 mas 'Keynote', id: 409183694
 mas 'LastPass', id: 926036361
 mas 'Pages', id: 409201541

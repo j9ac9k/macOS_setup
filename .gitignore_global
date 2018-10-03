@@ -74,8 +74,7 @@ sftp-config.json
 *.sublime-workspace
 
 # cache files for sublime text #
-
-*.tmlanguage.cache
+*.cache
 *.tmPreferences.cache
 *.stTheme.cache
 
@@ -98,8 +97,11 @@ GitHub.sublime-settings
 # Compiled Files #
 ##################
 
-# Compiled Python Files #
-*.pyc
-
 # Compiled C++ Files #
 *.out
+
+# PyENV
+.python-version
+
+# VSCode
+.vscode
