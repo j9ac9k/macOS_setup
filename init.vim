@@ -1,22 +1,42 @@
-let g:python_host_prog = '/Users/ogi/.pyenv/versions/2.7.15/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python_host_prog = '/Users/ogi/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/ogi/.pyenv/versions/neovim3/bin/python'
 
 call plug#begin()
-Plug 'Valloric/YouCompleteMe', { 'do': '/usr/local/bin/python3 install.py --clang-completer' }
-Plug 'kristijanhusak/vim-hybrid-material'
+" Documentation
 Plug 'rizzatti/dash.vim'
+
+" Theming
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'tmhedberg/SimpylFold'
-Plug 'vim-scripts/indentpython.vim'
-Plug 'scrooloose/syntastic'
-Plug 'nvie/vim-flake8'
+Plug 'kristijanhusak/vim-hybrid-material'
+
+" Nerd Tree
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'tmhedberg/SimpylFold'
+
+" Markdown
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+
+" Python AutoComplete and Linting
+Plug 'w0rp/ale'
+" Plug 'Valloric/YouCompleteMe', { 'do': '/usr/local/bin/python3 install.py --clang-completer' }
+
 Plug 'davidhalter/jedi-vim'
   Plug 'lambdalisue/vim-pyenv'
+
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
+
+" " (Optional) Multi-entry selection UI.
+" Plug 'junegunn/fzf'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+
 call plug#end()
 
 " ---------- Misc Settings -------------
@@ -84,6 +104,11 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme = "hybrid"
 let g:airline_theme = "powerlineish"
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
+
+"" ale signs for errors and warnings
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
 
 " NerdTree config
 map <C-n> :NERDTreeToggle<CR>
@@ -119,7 +144,6 @@ set encoding=utf8
 
 " For full syntax highlighting:
 let python_highlight_all=1
-syntax on
 
 " Keep indentation level from previous line:
 autocmd FileType python set autoindent
@@ -133,21 +157,32 @@ autocmd FileType python set foldmethod=indent
 nnoremap <space> za
 "----------Stop python PEP 8 stuff--------------
 
-"YCM configs
-" let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_python_interpreter_path = '/Users/ogi/.pyenv/versions/miniconda3-latest/envs/main/bin/python'
-let g:ycm_python_sys_path = []
-let g:ycm_extra_conf_vim_data = [
-  \  'g:ycm_python_interpreter_path',
-  \  'g:ycm_python_sys_path'
-  \]
-let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" deoplete options
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#server_timeout = 20
+
+" ALE options
+let g:ale_completion_enabled = 0
+
+"" jedi-vim
+" let g:jedi#popup_on_dot = 0
+" let g:jedi#goto_assignments_command = "<leader>g"
+" let g:jedi#goto_definitions_command = "<leader>d"
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<leader>n"
+" let g:jedi#rename_command = "<leader>r"
+" let g:jedi#show_call_signatures = "1"
+" let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#smart_auto_mappings = 0
+
+" Since I'm using deoplete-jedi
+let g:jedi#completions_enabled = 0
 
 " pyenv-jedi Allows changing of jedi versions
 if jedi#init_python()
   function! s:jedi_auto_force_py_version() abort
     let g:jedi#force_py_version = pyenv#python#get_internal_major_version()
+    let g:deoplete#sources#jedi#python_path = g:pyenv#python_exec
   endfunction
   augroup vim-pyenv-custom-augroup
     autocmd! *

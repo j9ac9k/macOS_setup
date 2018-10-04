@@ -24,10 +24,10 @@ pyenv virtualenv 3.7.0 tools
 pyenv virtualenv miniconda3-latest main
 
 # pre-populating virtual environments
-"$WORKON_HOME"/neovim2/bin/pip install neovim
+"$WORKON_HOME"/neovim2/bin/pip install -y neovim
 
-"$WORKON_HOME"/neovim3/bin/pip install neovim
+"$WORKON_HOME"/neovim3/bin/pip install -y neovim numpydoc
 
-"$WORKON_HOME"/tools/bin/pip install powerline-status requests twine pylint ipython flake8
+"$WORKON_HOME"/tools/bin/pip install -y powerline-status requests twine pylint ipython flake8 flake8-mypy
 
-"$WORKON_HOME"/main/bin/conda install scipy pandas statsmodels matplotlib seaborn ipython scikit-learn
+"$WORKON_HOME"/main/bin/conda install -y scipy pandas statsmodels matplotlib seaborn ipython scikit-learn
