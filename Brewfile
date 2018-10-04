@@ -72,8 +72,8 @@ brew 'swiftlint'
 brew 'swiftformat'
 
 # R
-brew 'libgit2' 
-brew 'r'
+# brew 'libgit2' 
+# brew 'r'
 
 # Dev
 brew 'cookiecutter'
@@ -198,6 +198,7 @@ cask 'plex-media-player'
 cask 'pocket-casts'
 cask 'powermate'
 cask 'pycharm'
+cask 'r-app'
 cask 'rstudio-preview'
 cask 'sequel-pro'
 cask 'shades'

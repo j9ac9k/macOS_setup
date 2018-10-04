@@ -9,6 +9,7 @@ Plug 'rizzatti/dash.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'ryanoasis/vim-devicons'
 
 " Nerd Tree
 Plug 'scrooloose/nerdtree'
