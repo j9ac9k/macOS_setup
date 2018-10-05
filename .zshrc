@@ -5,13 +5,13 @@ clear
 export DEFAULT_USER=$USER
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$PATH:/Users/ogi/.local/bin
+export PATH="$PATH:/Users/ogi/.local/bin"
 
 # Setting Terminal
 export TERM="xterm-256color"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/ogi/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -21,20 +21,12 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Theme Settings
 # Using awesome patched font
 POWERLEVEL9K_MODE='nerdfont-complete'
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('dir' 'vcs' 'pyenv')
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('dir' 'vcs' 'pyenv')
 
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=('dir' 'vcs' 'anaconda')
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda time)
-# POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uE868  %d/%m/%y}"
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_PYENV_BACKGROUND="black"
 POWERLEVEL9K_PYENV_FOREGROUND='yellow'
 POWERLEVEL9K_PYENV_VISUAL_IDENTIFIER_COLOR="yellow"
-
-# POWERLEVEL9K_ANACONDA_LEFT_DELIMITER=''
-# POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER=''
-# POWERLEVEL9K_ANACONDA_BACKGROUND="cyan"
-# POWERLEVEL9K_ANACONDA_FOREGROUND="black"
 
 POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
@@ -42,7 +34,6 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
 POWERLEVEL9K_PROMPT_ON_NEWLINE="true"
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
 POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="❯"
-
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -106,13 +97,6 @@ plugins=(
 
 . $ZSH/oh-my-zsh.sh
 
-# running z
-# Move next only if `homebrew` is installed
-if command -v brew >/dev/null 2>&1; then
-	# Load rupa's z if installed
-	[ -f $(brew --prefix)/etc/profile.d/z.sh ] && source $(brew --prefix)/etc/profile.d/z.sh
-fi
-
 
 # User configuration
 
@@ -146,36 +130,21 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 eval "$(hub alias -s)"
 
-# Configuring conda
-# . /usr/local/miniconda3/etc/profile.d/conda.sh
-# conda activate
-
 # zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Iterm2 Shell Integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# ZSH Syntax Highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # history search
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
-
-# pandoc completion
-# for bash completion scripts
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-
-eval "$(pandoc --bash-completion)"
 
 # added by travis gem
 [ -f /Users/ogi/.travis/travis.sh ] && source /Users/ogi/.travis/travis.sh
 
 # Setup virtualenv home
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Developer
+export PROJECT_HOME="$HOME/Developer"
 
 # rbenv
 export PATH="$HOME/.rbenv/shims:$PATH"
@@ -187,24 +156,46 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PYENV_HOOK_PATH="/usr/local/var/pyenv/pyenv.d/"
 
 # For reciprocate
-export WORKON_HOME="~/.pyenv/versions"
+export WORKON_HOME="$HOME/.pyenv/versions"
 
+# Initializing pyenv
 eval "$(pyenv init -)"
 
-export VIRTUALENVWRAPPER_PYTHON=/Users/$HOME/.pyenv/versions/3.7.0/bin/python
+export VIRTUALENVWRAPPER_PYTHON=$PYENV_ROOT/versions/3.7.0/bin/python
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 pyenv virtualenvwrapper_lazy
-
-
-# eval "$(pyenv virtualenv-init -)"
-
-# pyenv completions
-source $(brew --prefix pyenv)/completions/pyenv.zsh
 
 # pipenv
 export PIPENV_VENV_IN_PROJECT="true"
 export PIPENV_IGNORE_VIRTUALENVS=1
+
+# I think I Want to leave this commented out...
+# eval "$(pyenv virtualenv-init -)"
+
+# for bash completion scripts
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+
+# pandoc auto-complete
+eval "$(pandoc --bash-completion)"
+
+# haskell stack auto-complete
+eval "$(stack --bash-completion-script stack)"
+
+# pipenv auto-complete
 eval "$(pipenv --completion)"
+
+# pyenv auto-complete
+source $(brew --prefix pyenv)/completions/pyenv.zsh
+
+# git extras auto-complete
+source $(brew --prefix git-extras)/share/git-extras/git-extras-completion.zsh
+
+# z autocomplete
+source $(brew --prefix)/etc/profile.d/z.sh
+
+# ZSH Syntax Highlighting
+source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Nice graphics
 archey -c -o
@@ -212,8 +203,4 @@ archey -c -o
 # Unseting auto-cd because this is a stupid option
 unsetopt AUTO_CD
 
-# haskell stack
-eval "$(stack --bash-completion-script stack)"
 
-# git extras completion
-source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
