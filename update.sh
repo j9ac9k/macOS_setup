@@ -12,29 +12,29 @@ mas upgrade
 # updating main python
 # pyenv activate main
 "$WORKON_HOME"/main/bin/conda update --all -y
-"$WORKON_HOME"/main/bin/conda clean --all -y
+"$WORKON_HOME"/main/bin/conda clean --all -y -q
 
 # Update all bookmarked git repos
 gitup --cleanup
-gitup -b
+gitup -b "$HOME/git/macOS_setup/gitup_bookmarks"
 
 # update pyenv and plugins
 pyenv update
 
 # Special one-off packages
-/usr/local/bin/pip install --upgrade pip virtualenv virtualenvwrapper
+/usr/local/bin/pip install --upgrade -q pip virtualenv virtualenvwrapper
 
-"$WORKON_HOME"/neovim2/bin/pip install --upgrade neovim
+"$WORKON_HOME"/neovim2/bin/pip install -q --upgrade neovim
 
-"$WORKON_HOME"/neovim3/bin/pip install --upgrade neovim
+"$WORKON_HOME"/neovim3/bin/pip install -q --upgrade neovim numpydoc
 
-"$WORKON_HOME"/tools/bin/pip install --upgrade powerline-status requests twine pylint ipython pip
+"$WORKON_HOME"/tools/bin/pip install -q --upgrade powerline-status requests twine pylint ipython pip
 
 gem update neovim
 npm install -g neovim
 
 # Update Vim Plugins
-nvim -c ":PlugUpdate" -c quitall
+nvim -c ":PlugUpgrade" -c ":PlugUpdate" -c quitall
 
 # Upgrading Stack
 # stack upgrade
