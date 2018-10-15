@@ -8,8 +8,9 @@ git clone git://github.com/pyenv/pyenv-update.git $(pyenv root)/plugins/pyenv-up
 gitup --add $(pyenv root)/plugins/pyenv-update
 
 # getting conda hooks in
-mkdir /usr/local/var/pyenv.d/virtualenv
-cp ./venv_hook.bash /usr/local/var/pyenv.d/virtualenv/
+# https://github.com/pyenv/pyenv-virtualenv/issues/178#issuecomment-387862525
+mkdir -p /usr/local/var/pyenv/pyenv.d/virtualenv
+cp ./venv_hook.bash /usr/local/var/pyenv/pyenv.d/virtualenv/
 
 # base python environments
 pyenv install miniconda3-latest
@@ -24,10 +25,10 @@ pyenv virtualenv 3.7.0 tools
 pyenv virtualenv miniconda3-latest main
 
 # pre-populating virtual environments
-"$WORKON_HOME"/neovim2/bin/pip install -y neovim
+"$WORKON_HOME"/neovim2/bin/pip install neovim
 
-"$WORKON_HOME"/neovim3/bin/pip install -y neovim numpydoc
+"$WORKON_HOME"/neovim3/bin/pip install neovim numpydoc
 
-"$WORKON_HOME"/tools/bin/pip install -y powerline-status requests twine pylint ipython flake8 flake8-mypy
+"$WORKON_HOME"/tools/bin/pip install powerline-status requests twine pylint ipython flake8 flake8-mypy
 
-"$WORKON_HOME"/main/bin/conda install -y scipy pandas statsmodels matplotlib seaborn ipython scikit-learn
+"$WORKON_HOME"/main/bin/conda install scipy pandas statsmodels matplotlib seaborn ipython scikit-learn
