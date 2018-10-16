@@ -1,5 +1,3 @@
-tap 'homebrew/fuse'
-tap 'homebrew/dupes'
 tap 'homebrew/cask'
 tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
@@ -19,7 +17,6 @@ brew 'cmake'
 brew 'coreutils'
 brew 'dark-mode'
 brew 'dfu-util'
-brew 'duti'
 brew 'findutils'
 brew 'gawk'
 brew 'gcc', args: ['with-jit']
@@ -176,7 +173,6 @@ cask 'gitkraken'
 cask 'gitter'
 cask 'google-backup-and-sync'
 cask 'google-chrome'
-cask 'inkscape'
 cask 'iterm2'
 cask 'java'
 cask 'julia'
@@ -258,3 +254,6 @@ mas 'Xcode', id: 497799835
 
 # Have earlier dependencies
 brew 'sshfs'
+
+# XQuarts Dependency
+cask 'inkscape'
