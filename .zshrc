@@ -1,11 +1,7 @@
+#!/usr/bin/env zsh
+
 # Hide Last Login prompt
 clear
-
-# setting user
-export DEFAULT_USER=$USER
-
-# If you come from bash you might have to change your $PATH.
-export PATH="$PATH:/Users/ogi/.local/bin"
 
 # Setting Terminal
 export TERM="xterm-256color"
@@ -13,27 +9,44 @@ export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# zplug "$ZSH/oh-my-zsh.sh", from:local, as:command
+source "$ZSH/oh-my-zsh.sh"
+
+export ZPLUG_HOME=/usr/local/opt/zplug
+source "$ZPLUG_HOME/init.zsh"
+
+# zplug
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
+# setting user
+# export DEFAULT_USER=$USER
+
+# If you come from bash you might have to change your $PATH.
+export PATH="$PATH:$HOME/.local/bin"
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
 
-# Theme Settings
-# Using awesome patched font
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('dir' 'vcs' 'pyenv')
+# Theme
+# zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_PYENV_BACKGROUND="black"
-POWERLEVEL9K_PYENV_FOREGROUND='yellow'
-POWERLEVEL9K_PYENV_VISUAL_IDENTIFIER_COLOR="yellow"
 
-POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
-POWERLEVEL9K_PROMPT_ON_NEWLINE="true"
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="❯"
+# Powerlevel Theme Settings
+# POWERLEVEL9K_MODE='nerdfont-complete'
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('dir' 'vcs' 'pyenv')
+
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+# POWERLEVEL9K_PYENV_BACKGROUND="black"
+# POWERLEVEL9K_PYENV_FOREGROUND='yellow'
+# POWERLEVEL9K_PYENV_VISUAL_IDENTIFIER_COLOR="yellow"
+
+# Spaceship Prompt Theme
+SPACESHIP_PYENV_SHOW="true"
+SPACESHIP_CONDA_SHOW="false"
+SPACESHIP_VENV_SHOW="true"
+
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -53,7 +66,7 @@ POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="❯"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=3
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -65,7 +78,7 @@ POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="❯"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -84,19 +97,14 @@ POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="❯"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-    brew
-    brew-cask
-    git
-    git-flow-completion
-    git-extras
-    python
-    osx
-    history-substring-search
-    zsh-syntax-highlighting)
 
-. $ZSH/oh-my-zsh.sh
-
+# Supports oh-my-zsh plugins and the like
+zplug "plugins/git",   from:oh-my-zsh
+zplug "plugins/git-extras", from:oh-my-zsh
+zplug "plugins/python", from:oh-my-zsh
+zplug "plugins/osx", from:oh-my-zsh
+# zplug "plugins/zsh-syntax-highlighting", from:oh-my-zsh, defer:2
+zplug "plugins/history-substring-search", from:oh-my-zsh, defer:3
 
 # User configuration
 
@@ -128,20 +136,13 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-eval "$(hub alias -s)"
-
-# zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
+# eval "$(hub alias -s)"
 
 # Iterm2 Shell Integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# history search
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
-
 # added by travis gem
-[ -f /Users/ogi/.travis/travis.sh ] && source /Users/ogi/.travis/travis.sh
+[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 
 # Setup virtualenv home
 export PROJECT_HOME="$HOME/Developer"
@@ -150,52 +151,54 @@ export PROJECT_HOME="$HOME/Developer"
 export PATH="$HOME/.rbenv/shims:$PATH"
 
 # pyenv
-export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PYENV_HOOK_PATH="/usr/local/var/pyenv/pyenv.d/"
 
 # For reciprocate
-export WORKON_HOME="$HOME/.pyenv/versions"
+export WORKON_HOME="$PYENV_ROOT/versions"
 
-# Initializing pyenv
-eval "$(pyenv init -)"
+# export PYENV_VIRTUALENV_VERBOSE_ACTIVATE="true"
+export VIRTUALENVWRAPPER_PYTHON="$PYENV_ROOT/versions/miniconda3-latest/bin/python"
+export VIRTUALENVWRAPPER_VIRTUALENV="/usr/local/bin/virtualenv"
 
-export VIRTUALENVWRAPPER_PYTHON=$PYENV_ROOT/versions/3.7.0/bin/python
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+eval "$(pyenv init - --no-rehash)"
+eval "$(pyenv virtualenv-init -)"
 pyenv virtualenvwrapper_lazy
 
 # pipenv
 export PIPENV_VENV_IN_PROJECT="true"
 export PIPENV_IGNORE_VIRTUALENVS=1
 
-# I think I Want to leave this commented out...
-# eval "$(pyenv virtualenv-init -)"
-
-# for bash completion scripts
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-
 # pandoc auto-complete
-eval "$(pandoc --bash-completion)"
-
-# haskell stack auto-complete
-eval "$(stack --bash-completion-script stack)"
+zplug "anntzer/zsh-pandoc-completion", at:autocomplete-filenames
 
 # pipenv auto-complete
-eval "$(pipenv --completion)"
+# eval "$(pipenv --completion)"
+zplug "owenstranathan/pipenv.zsh"
 
 # pyenv auto-complete
-source $(brew --prefix pyenv)/completions/pyenv.zsh
+zplug "/usr/local/opt/pyenv/completions/pyenv.zsh", from:local
 
 # git extras auto-complete
-source $(brew --prefix git-extras)/share/git-extras/git-extras-completion.zsh
+zplug "/usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh", from:local
 
 # z autocomplete
-source $(brew --prefix)/etc/profile.d/z.sh
+zplug "plugins/z", from:oh-my-zsh
 
-# ZSH Syntax Highlighting
-source $(brew --prefix zsh-syntax-highlighting)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# # zsh-users
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+# history search
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
+
+# word-skip
+bindkey "[D" backward-word
+bindkey "[C" forward-word
 
 # Nice graphics
 archey -c -o
@@ -203,4 +206,19 @@ archey -c -o
 # Unseting auto-cd because this is a stupid option
 unsetopt AUTO_CD
 
+# sharing history
+setopt share_history
 
+# Install plugins if there are plugins that have not been installed
+if ! zplug check; then
+    printf "Install plugins? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load
+
+# enable zsh completion in [n]vim via deoplete.nvim and deoplete-zsh
+zmodload zsh/zpty

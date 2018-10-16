@@ -32,8 +32,9 @@ brew 'less'
 brew 'make', args: ['with-default-names']
 brew 'mas'
 brew 'midnight-commander'
-brew 'moreutils'e
+brew 'moreutils'
 brew 'mplayer'
+brew 'node'
 brew 'openssh'
 brew 'phantomjs'
 brew 'pkg-config'
@@ -50,6 +51,7 @@ brew 'youtube-dl'
 brew 'you-get'
 brew 'z'
 brew 'zeromq'
+brew 'zplug'
 brew 'zsh', args: ['with-unicode9'] 
 brew 'zsh-completions'
 brew 'zsh-syntax-highlighting'
@@ -70,10 +72,6 @@ brew 'bfg'
 # Swift
 brew 'swiftlint'
 brew 'swiftformat'
-
-# R
-# brew 'libgit2' 
-# brew 'r'
 
 # Dev
 brew 'cookiecutter'
@@ -210,7 +208,6 @@ cask 'sourcetree'
 cask 'steam'
 cask 'sublime-text'
 cask 'texstudio'
-cask 'textmate'
 cask 'the-unarchiver'
 cask 'vimr'
 cask 'visual-studio-code'
