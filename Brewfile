@@ -5,6 +5,12 @@ tap 'homebrew/cask-drivers'
 
 cask_args appdir: '/Applications'
 
+brew 'mas'
+cask 'xquartz'
+mas 'Xcode', id: 497799835
+cask 'java'
+
+
 brew 'ack'
 brew 'ansiweather'
 brew 'archey'
@@ -27,7 +33,6 @@ brew 'htop', args: ['with-ncurses']
 brew 'lastpass-cli', args: ['with-pinentry']
 brew 'less'
 brew 'make', args: ['with-default-names']
-brew 'mas'
 brew 'midnight-commander'
 brew 'moreutils'
 brew 'mplayer'
@@ -173,10 +178,8 @@ cask 'gitter'
 cask 'google-backup-and-sync'
 cask 'google-chrome'
 cask 'iterm2'
-cask 'java'
 cask 'julia'
 cask 'kindle'
-cask 'lastpass'
 cask 'lumen'
 cask 'mactex'
 cask 'mactracker'
@@ -209,7 +212,6 @@ cask 'vimr'
 cask 'visual-studio-code'
 cask 'vlc'
 cask 'whatsapp'
-cask 'xquartz'
 cask "yubico-yubikey-piv-manager"
 cask 'zoomus'
 
@@ -234,7 +236,6 @@ cask "font-sourcecodepro-nerd-font-mono"
 # QuickLook
 cask 'jupyter-notebook-ql'
 cask 'qlcolorcode'
-cask 'qlimagesize'
 cask 'qlmarkdown'
 cask 'qlplayground'
 cask 'qlprettypatch'
@@ -250,7 +251,6 @@ mas 'Pages', id: 409201541
 mas 'ReadKit', id: 588726889
 mas 'Transmit', id: 403388562
 mas 'Tweetbot', id: 557168941
-mas 'Xcode', id: 497799835
 
 # Have earlier dependencies
 brew 'sshfs'
