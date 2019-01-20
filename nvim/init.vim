@@ -1,7 +1,5 @@
-let g:workon_home=$WORKON_HOME
-
-let g:python_host_prog = workon_home . '/neovim2/bin/python'
-let g:python3_host_prog = workon_home . '/neovim3/bin/python'
+let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
 
 call plug#begin()
 " Documentation
