@@ -1,5 +1,7 @@
-let g:python_host_prog = '/Users/ogi/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/ogi/.pyenv/versions/neovim3/bin/python'
+let g:workon_home=$WORKON_HOME
+
+let g:python_host_prog = workon_home . '/neovim2/bin/python'
+let g:python3_host_prog = workon_home . '/neovim3/bin/python'
 
 call plug#begin()
 " Documentation
@@ -22,7 +24,6 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Python AutoComplete and Linting
 Plug 'w0rp/ale'
-" Plug 'Valloric/YouCompleteMe', { 'do': '/usr/local/bin/python3 install.py --clang-completer' }
 
 Plug 'davidhalter/jedi-vim'
   Plug 'lambdalisue/vim-pyenv'

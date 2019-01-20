@@ -1,6 +1,8 @@
 # Readme
 
-The repository contains the files I use to configure a new installation of OS X/MacOS to my liking.  Feel free to clone/fork and alter to your needs.
+The repository contains the files I use to configure a new installation of MacOS to my liking.
+
+Some things it handles is pyenv with conda environments, using zim, zplug, and neovim.
 
 # Pull Requests
 

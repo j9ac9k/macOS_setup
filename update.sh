@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
-echo "--- Upgrading ZSH ---"
-env ZSH=$ZSH /bin/sh $ZSH/tools/upgrade.sh
+echo "--- Upgrading zim ---"
+zmanage update
 echo "\n"
 
 echo "--- Upgradeing ZPlug ---"
@@ -47,7 +47,6 @@ echo "--- Updating Python Virtual Environments ---"
 
 "$WORKON_HOME"/neovim2/bin/pip install -q --upgrade pip neovim
 "$WORKON_HOME"/neovim3/bin/pip install -q --upgrade pip neovim numpydoc
-"$WORKON_HOME"/tools/bin/pip install -q --upgrade pip powerline-status requests twine pylint ipython pip
 echo "\n"
 
 # Update Vim Plugins
@@ -55,7 +54,6 @@ echo "--- Updating Neovim ---"
 nvim -c ":PlugUpgrade" -c ":PlugUpdate" -c quitall
 gem update neovim
 npm install -g neovim
-
 
 # Upgrading Stack
 # stack upgrade
