@@ -12,7 +12,6 @@ cask 'java'
 
 
 brew 'ack'
-brew 'ansiweather'
 brew 'archey'
 brew 'bash'
 brew 'bash-completion2'

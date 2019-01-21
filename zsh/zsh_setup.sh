@@ -15,10 +15,5 @@ done
 # Installing ITerm2 Shell Integration
 curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 
-# installing powerlevel9k
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.zim/modules/prompt/external-themes/powerlevel9k
-gitup --add ~/.zim/modules/prompt/external-themes/powerlevel9k
-ln -s ~/.zim/modules/prompt/external-themes/powerlevel9k/powerlevel9k.zsh-theme ~/.zim/modules/prompt/functions/prompt_powerlevel9k_setup
-
 # linking .zshrc
 ln -s .zshrc "$HOME"/.zshrc
