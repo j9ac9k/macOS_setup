@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 # Adding homebrew shells to /etc/shells
-sudo echo "/usr/local/bin/zsh" >> /etc/shells
-sudo echo "/usr/local/bin/bash" >> /etc/shells
+sudo -v
+
+echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells
+echo "/usr/local/bin/bash" | sudo tee -a /etc/shells
 
 # setting up zim
 git clone --recursive https://github.com/zimfw/zimfw.git ${ZDOTDIR:-${HOME}}/.zim
