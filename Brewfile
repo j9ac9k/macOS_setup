@@ -10,7 +10,6 @@ cask 'xquartz'
 mas 'Xcode', id: 497799835
 cask 'java'
 
-
 brew 'ack'
 brew 'archey'
 brew 'bash'
@@ -23,14 +22,14 @@ brew 'coreutils'
 brew 'dfu-util'
 brew 'findutils'
 brew 'gawk'
-brew 'gcc', args: ['with-jit']
+brew 'gcc'
 brew 'gzip'
 brew 'hdf5'
 brew 'howdoi'
-brew 'htop', args: ['with-ncurses']
-brew 'lastpass-cli', args: ['with-pinentry']
+brew 'htop'
+brew 'lastpass-cli'
 brew 'less'
-brew 'make', args: ['with-default-names']
+brew 'make'
 brew 'midnight-commander'
 brew 'moreutils'
 brew 'mplayer'
@@ -43,7 +42,7 @@ brew 'screenfetch'
 brew 'ssh-copy-id'
 brew 'terminal-notifier'
 brew 'the_silver_searcher'
-brew 'tmux', args: ['with-utf8proc']
+brew 'tmux'
 brew 'trash'
 brew 'wget'
 brew 'youtube-dl'
@@ -51,7 +50,7 @@ brew 'you-get'
 brew 'z'
 brew 'zeromq'
 brew 'zplug'
-brew 'zsh', args: ['with-unicode9'] 
+brew 'zsh'
 brew 'zsh-completions'
 brew 'zsh-syntax-highlighting'
 
@@ -80,17 +79,20 @@ brew 'pacvim'
 brew 'pre-commit'
 brew 'ruby'
 brew 'rbenv'
+brew 'source-highlight'
 brew 'tox'
 brew 'travis'
 
 # Python Specific
-brew 'python', args: ['build-from-source']
+brew 'python'
 brew 'pipenv'
 brew 'black'
 brew 'mypy'
+brew 'flake8'
 brew 'pyenv'
 brew 'pyenv-virtualenv'
 brew 'pyenv-virtualenvwrapper'
+brew 'pyenv-which-ext'
 
 # Media 
 brew 'media-info'
@@ -102,59 +104,22 @@ brew 'sox'
 brew 'fdk-aac-encoder'
 brew 'ocrmypdf'
 
-brew 'libcaca', args: ['with-imlib2']
-brew 'libvpx', args: ['with-examples',
-                      'with-highbitdepth']
-brew 'tesseract', args: ['with-opencl',
-                         'with-training-tools']
-brew 'fftw', args: ['with-mpi',
-                    'with-openmp']
-brew 'ffmpeg', args: ['with-fdk-aac',  # high-quality audio codec
-                      'with-fontconfig',
-                      'with-freetype',
-                      'with-game-music-emu',  # game music emulation
-                      'with-libass',
-                      'with-libcaca',   # video to text!
-                      'with-librsvg',
-                      'with-libsoxr',
-                      'with-libvidstab',  # video stabilization
-                      'with-libvorbis',
-                      'with-libvpx',
-                      'with-opus',  # high compression audio
-                      'with-rubberband',  # time-stretching and pitch shifting
-                      'with-sdl2',  # ffplay
-                      'with-srt',  # srt subtitle support
-                      'with-tesseract',  # allows OCR
-                      'with-tools',
-                      'with-wavpack',  # lossless audio compression
-                      'with-webp',  # google image format
-                      'with-x265',  # high compression video
-                      'with-zeromq',
-                      'without-qtkit',
-                      'without-xvid']
-
-brew 'imagemagick', args: ['with-fftw',
-                           'with-fontconfig',
-                           'with-ghostscript',
-                           'with-librsvg',
-                           'with-webp']
-
-brew 'graphviz', args:['with-bindings',
-                       "with-freetype",
-                       "with-librsvg"]
+brew 'ffmpeg'
+brew 'imagemagick'
+brew 'graphviz'
 
 # Documents
 brew 'pandoc'
 brew 'pandoc-citeproc'
 
 # Dupes
-brew 'grep', args: ['with-default-names']
+brew 'grep'
 brew 'lsof'
 brew 'nano'
 brew 'rsync'
 brew 'screen'
-brew 'gnu-sed', args: ['with-default-names']
-brew 'gnu-units', args: ['with-default-names']
+brew 'gnu-sed'
+brew 'gnu-units'
 brew 'whois'
 
 # Casks
@@ -164,6 +129,7 @@ cask 'boostnote'
 cask 'caffeine'
 cask 'cheatsheet'
 cask 'colloquy'
+cask 'coteditor'
 cask 'dash'
 cask 'db-browser-for-sqlite'
 cask 'discord'
@@ -173,7 +139,9 @@ cask 'git-it'
 cask 'gitkraken'
 cask 'gitter'
 cask 'google-backup-and-sync'
+cask 'google-chat'
 cask 'google-chrome'
+cask 'inkscape'
 cask 'iterm2'
 cask 'julia'
 cask 'kindle'
@@ -211,26 +179,19 @@ cask 'vimr'
 cask 'visual-studio-code'
 cask 'vlc'
 cask 'whatsapp'
+cask 'xbox360-controller-driver-unofficial'
 cask "yubico-yubikey-piv-manager"
 cask 'zoomus'
 
 # Fonts
 cask "font-anonymouspro-nerd-font"
-cask "font-anonymouspro-nerd-font-mono"
 cask "font-dejavusansmono-nerd-font"
-cask "font-dejavusansmono-nerd-font-mono"
 cask "font-firacode-nerd-font"
-cask "font-firacode-nerd-font-mono"
 cask "font-hack-nerd-font"
-cask "font-hack-nerd-font-mono"
 cask "font-inconsolata-nerd-font"
-cask "font-inconsolata-nerd-font-mono"
 cask "font-meslo-nerd-font"
-cask "font-meslo-nerd-font-mono"
 cask "font-robotomono-nerd-font"
-cask "font-robotomono-nerd-font-mono"
 cask "font-sourcecodepro-nerd-font"
-cask "font-sourcecodepro-nerd-font-mono"
 
 # QuickLook
 cask 'jupyter-notebook-ql'
@@ -253,6 +214,3 @@ mas 'Tweetbot', id: 557168941
 
 # Have earlier dependencies
 brew 'sshfs'
-
-# XQuarts Dependency
-cask 'inkscape'
