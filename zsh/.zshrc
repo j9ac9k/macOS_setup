@@ -1,10 +1,16 @@
+# Define zim location
+export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+
+# Start zim
+[[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh
+
 # Hide Last Login prompt
 clear
 
 # Setting Terminal
 export TERM="xterm-256color"
 
-export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -19,12 +25,11 @@ export DEFAULT_USER=$USER
 # If you come from bash you might have to change your $PATH.
 export PATH="$PATH:$HOME/.local/bin"
 
+# Add coreutils
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+export EDITOR='nvim'
 
 # pipenv
 export PIPENV_VENV_IN_PROJECT="true"
@@ -53,6 +58,19 @@ eval "$(pyenv init - --no-rehash)"
 eval "$(pyenv virtualenv-init -)"
 pyenv virtualenvwrapper_lazy
 
+# Powerlevel Theme Settings
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('host' 'dir' 'vcs' 'pyenv')
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_PYENV_BACKGROUND="black"
+POWERLEVEL9K_PYENV_FOREGROUND='yellow'
+# POWERLEVEL9K_PYENV_VISUAL_IDENTIFIER_COLOR="yellow"
+
+# Spaceship Prompt Theme
+SPACESHIP_PYENV_SHOW="true"
+SPACESHIP_CONDA_SHOW="false"
+SPACESHIP_VENV_SHOW="true"
+
 export ZPLUG_HOME=/usr/local/opt/zplug
 source "$ZPLUG_HOME/init.zsh"
 
@@ -62,20 +80,6 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, as:theme, defer:2
 # zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
-# Powerlevel Theme Settings
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=('dir' 'vcs' 'pyenv')
-
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-# POWERLEVEL9K_PYENV_BACKGROUND="black"
-# POWERLEVEL9K_PYENV_FOREGROUND='yellow'
-# POWERLEVEL9K_PYENV_VISUAL_IDENTIFIER_COLOR="yellow"
-
-# Spaceship Prompt Theme
-SPACESHIP_PYENV_SHOW="true"
-SPACESHIP_CONDA_SHOW="false"
-SPACESHIP_VENV_SHOW="true"
-
 zplug "${HOME}/.iterm2_shell_integration.zsh", from:local, as:command
 
 [ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
@@ -84,7 +88,7 @@ zplug "${HOME}/.iterm2_shell_integration.zsh", from:local, as:command
 zplug "anntzer/zsh-pandoc-completion", at:autocomplete-filenames, as:plugin
 
 # pipenv auto-complete
-zplug "owenstranathan/pipenv.zsh", as:plugin
+# zplug "owenstranathan/pipenv.zsh", as:plugin
 
 # pyenv auto-complete
 zplug "/usr/local/opt/pyenv/completions", use:pyenv.zsh, from:local, as:command
@@ -121,6 +125,9 @@ archey -c -o
 
 # sharing history
 setopt share_history
+
+# disabling auto CD
+unsetopt AUTO_CD
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check; then
