@@ -19,7 +19,7 @@ cp ./venv_hook.bash /usr/local/var/pyenv/pyenv.d/virtualenv/
 pyenv install miniconda3-latest
 pyenv install 2.7.15
 pyenv install 3.7.2
-pyenv install 3.6.6
+pyenv install 3.6.7
 
 # creating virtual environments
 pyenv virtualenv miniconda3-latest tools
