@@ -1,3 +1,8 @@
+#! /usr/local/env bash
+
+# get present directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 # create config directory
 mkdir -p "$HOME/.config/nvim"
 
@@ -6,7 +11,7 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # symbolic link to repo file
-ln -s init.vim "$HOME/.config/nvim/init.vim"
+ln -s "$DIR/init.vim" "$HOME/.config/nvim/init.vim"
 
 # installing node extension
 npm install -g neovim
@@ -14,7 +19,6 @@ npm install -g neovim
 # installing ruby extensions
 rbenv install 2.6.0
 rbenv global 2.6.0
-rbenv rehash
 gem install neovim
 
 # installying python extensions

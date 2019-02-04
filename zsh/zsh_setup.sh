@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# get present directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+
 # Adding homebrew shells to /etc/shells
 sudo -v
 
@@ -18,4 +22,4 @@ done
 curl -L https://iterm2.com/misc/install_shell_integration.sh | bash
 
 # linking .zshrc
-ln -s .zshrc "$HOME"/.zshrc
+ln -s "$DIR/.zshrc" "$HOME"/.zshrc

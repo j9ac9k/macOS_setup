@@ -33,15 +33,20 @@ brew 'make'
 brew 'midnight-commander'
 brew 'moreutils'
 brew 'mplayer'
+brew "mtr"
+brew "nmap"
 brew 'node'
 brew 'openssh'
 brew 'pkg-config'
+brew "qt"
 brew 'rclone'
 brew 'renameutils'
 brew 'screenfetch'
 brew 'ssh-copy-id'
+brew "tcl-tk"
 brew 'terminal-notifier'
 brew 'the_silver_searcher'
+brew "tldr"
 brew 'tmux'
 brew 'trash'
 brew 'wget'
@@ -71,6 +76,7 @@ brew 'swiftformat'
 
 # Dev
 brew 'cookiecutter'
+brew "direnv"
 brew 'haskell-stack'
 brew 'highlight'
 brew 'lua'
@@ -124,6 +130,7 @@ brew 'whois'
 
 # Casks
 cask 'alfred'
+cask 'balenaetcher'
 cask 'bettertouchtool'
 cask 'boostnote'
 cask 'caffeine'
@@ -184,7 +191,10 @@ cask "yubico-yubikey-piv-manager"
 cask 'zoomus'
 
 # Fonts
+cask "font-3270-nerd-font"
 cask "font-anonymouspro-nerd-font"
+cask "font-aurulentsansmono-nerd-font"
+cask "font-bitstreamverasansmono-nerd-font"
 cask "font-dejavusansmono-nerd-font"
 cask "font-firacode-nerd-font"
 cask "font-hack-nerd-font"

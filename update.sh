@@ -1,7 +1,4 @@
-#!/usr/bin/env zsh
-echo "--- Upgrading zim ---"
-zmanage update
-echo "\n"
+#!/usr/local/bin/zsh
 
 echo "--- Upgradeing ZPlug ---"
 export ZPLUG_HOME=/usr/local/opt/zplug
@@ -24,12 +21,6 @@ echo "-- Upgrading from the AppStore ---"
 mas upgrade
 echo "\n"
 
-echo "-- Upgrading Main Python Environment ---"
-# updating main python
-"$WORKON_HOME"/main/bin/conda update --all -y
-"$WORKON_HOME"/main/bin/conda clean --all -y -q
-echo "\n"
-
 echo "--- Gitup Updates ---"
 # Update all bookmarked git repos
 gitup --cleanup
@@ -39,6 +30,12 @@ echo "\n"
 echo "--- Pyenv Update ---"
 # update pyenv and plugins
 pyenv update
+echo "\n"
+
+echo "-- Upgrading Main Python Environment ---"
+# updating main python
+"$WORKON_HOME"/main/bin/conda update --all -y
+"$WORKON_HOME"/main/bin/conda clean --all -y -q
 echo "\n"
 
 echo "--- Updating Python Virtual Environments ---"
@@ -54,6 +51,3 @@ echo "--- Updating Neovim ---"
 nvim -c ":PlugUpgrade" -c ":PlugUpdate" -c quitall
 gem update neovim
 npm install -g neovim
-
-# Upgrading Stack
-# stack upgrade
