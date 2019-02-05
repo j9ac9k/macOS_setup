@@ -1,0 +1,6 @@
+[submodule "themes/iterm2-material-design"]
+	path = themes/iterm2-material-design
+	url = https://github.com/MartinSeeler/iterm2-material-design
+[submodule "themes/xcode-material-theme"]
+	path = themes/xcode-material-theme
+	url = https://github.com/PleaseDont/xcode-material-theme
