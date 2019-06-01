@@ -25,15 +25,18 @@ export DEFAULT_USER=$USER
 # If you come from bash you might have to change your $PATH.
 export PATH="$PATH:$HOME/.local/bin"
 
-# Add coreutils
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# Add coreutils 
+# conflicts with fbs/hd
+# export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 # Preferred editor for local and remote sessions
-export EDITOR='nvim'
+export EDITOR='code'
 
 # pipenv
-export PIPENV_VENV_IN_PROJECT="true"
+export PIPENV_VENV_IN_PROJECT=1
 export PIPENV_IGNORE_VIRTUALENVS=1
+export PIPENV_SHELL_FANCY="on"
+export PIPENV_DEFAULT_PYTHON_VERSION=3
 
 # Setup virtualenv home
 export PROJECT_HOME="$HOME/Developer"
@@ -50,13 +53,13 @@ export PYENV_HOOK_PATH="/usr/local/var/pyenv/pyenv.d/"
 # For reciprocate
 export WORKON_HOME="$PYENV_ROOT/versions"
 
-# export PYENV_VIRTUALENV_VERBOSE_ACTIVATE="true"
-export VIRTUALENVWRAPPER_PYTHON="$PYENV_ROOT/versions/miniconda3-latest/bin/python"
+export PYENV_VIRTUALENV_VERBOSE_ACTIVATE="true"
+# export VIRTUALENVWRAPPER_PYTHON="$PYENV_ROOT/versions/miniconda3-latest/bin/python"
 export VIRTUALENVWRAPPER_VIRTUALENV="/usr/local/bin/virtualenv"
 
 eval "$(pyenv init - --no-rehash)"
 eval "$(pyenv virtualenv-init -)"
-pyenv virtualenvwrapper_lazy
+# pyenv virtualenvwrapper_lazy
 
 # Powerlevel Theme Settings
 POWERLEVEL9K_MODE='nerdfont-complete'
@@ -81,8 +84,6 @@ zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme, from:github, as:theme
 # zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
 zplug "${HOME}/.iterm2_shell_integration.zsh", from:local, as:command
-
-[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 
 # pandoc auto-complete
 zplug "anntzer/zsh-pandoc-completion", at:autocomplete-filenames, as:plugin
@@ -139,3 +140,20 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
+export HOMEBREW_GITHUB_API_TOKEN=702d140a4f2f00830e5de658e0de521854f451e1
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/ognyan/.pyenv/versions/miniconda3-latest/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/ognyan/.pyenv/versions/miniconda3-latest/etc/profile.d/conda.sh" ]; then
+        . "/Users/ognyan/.pyenv/versions/miniconda3-latest/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/ognyan/.pyenv/versions/miniconda3-latest/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
