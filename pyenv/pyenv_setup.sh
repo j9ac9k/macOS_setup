@@ -17,15 +17,15 @@ cp ./venv_hook.bash /usr/local/var/pyenv/pyenv.d/virtualenv/
 
 # base python environments
 pyenv install miniconda3-latest
-pyenv install 2.7.15
-pyenv install 3.7.2
-pyenv install 3.6.7
+pyenv install 2.7.16
+pyenv install 3.7.3
+pyenv install 3.6.8
 
 # creating virtual environments
-pyenv virtualenv miniconda3-latest tools
 pyenv virtualenv miniconda3-latest main
 
 # pre-populating virtual environments
 export WORKON_HOME="$HOME/.pyenv/versions"
 
 "$WORKON_HOME"/main/bin/conda install scipy pandas statsmodels matplotlib seaborn ipython scikit-learn
+"$WORKON-HOME"/miniconda3-latest/bin/conda config --set auto_activate_base false
