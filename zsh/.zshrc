@@ -23,7 +23,7 @@ export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 export DEFAULT_USER=$USER
 
 # If you come from bash you might have to change your $PATH.
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Add coreutils 
 # conflicts with fbs/hd

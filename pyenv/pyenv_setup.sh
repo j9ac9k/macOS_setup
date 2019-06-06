@@ -6,6 +6,10 @@ sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_heade
 pip3 install --upgrade pip
 pip3 install virtualenv virtualenvwrapper
 
+# setup pipx
+pip3 install pipx
+python3 -m userpath append ~/.local/bin
+
 # adding pyenv update plugins
 git clone git://github.com/pyenv/pyenv-update.git $(pyenv root)/plugins/pyenv-update
 gitup --add $(pyenv root)/plugins/pyenv-update
@@ -27,5 +31,16 @@ pyenv virtualenv miniconda3-latest main
 # pre-populating virtual environments
 export WORKON_HOME="$HOME/.pyenv/versions"
 
-"$WORKON_HOME"/main/bin/conda install scipy pandas statsmodels matplotlib seaborn ipython scikit-learn
-"$WORKON-HOME"/miniconda3-latest/bin/conda config --set auto_activate_base false
+"$WORKON_HOME"/main/bin/conda install scipy pandas matplotlib seaborn ipython numpy
+"$WORKON_HOME"/miniconda3-latest/bin/conda config --set auto_activate_base false
+
+# configure pipx
+pipx install mypy
+pipx install black
+pipx install flake8
+pipx inject flake8 flake8-bugbear
+pipx install tox
+pipx inject tox tox-pyenv
+pipx install pipenv
+pipx install poetry
+pipx install isort

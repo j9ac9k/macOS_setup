@@ -46,6 +46,10 @@ echo "--- Updating Python Virtual Environments ---"
 "$WORKON_HOME"/neovim3/bin/pip install -q --upgrade pip neovim numpydoc
 echo "\n"
 
+echo '--- Upgrading pipx binaries ---'
+pipx upgrade-all
+echo "\n"
+
 # Update Vim Plugins
 echo "--- Updating Neovim ---"
 nvim -c ":PlugUpgrade" -c ":PlugUpdate" -c quitall
