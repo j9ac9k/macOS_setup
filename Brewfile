@@ -155,6 +155,7 @@ cask 'material-colors'
 cask 'meld'  # git merge tool
 cask 'mkvtools'
 cask 'netspot'
+caks 'nightowl'
 cask 'nvidia-geforce-now'
 cask 'osxfuse'
 cask 'phantomjs'
@@ -199,6 +200,7 @@ cask "font-sourcecodepro-nerd-font"
 # QuickLook
 cask 'jupyter-notebook-ql'
 cask 'qlcolorcode'
+cask 'qlimagesize'
 cask 'qlmarkdown'
 cask 'qlplayground'
 cask 'qlprettypatch'

@@ -25,8 +25,7 @@ export DEFAULT_USER=$USER
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/.local/bin:$PATH"
 
-# Add coreutils 
-# conflicts with fbs/hd
+# Add coreutils
 # export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 # Preferred editor for local and remote sessions
@@ -54,8 +53,8 @@ export PYENV_HOOK_PATH="/usr/local/var/pyenv/pyenv.d/"
 export WORKON_HOME="$PYENV_ROOT/versions"
 
 export PYENV_VIRTUALENV_VERBOSE_ACTIVATE="true"
-# export VIRTUALENVWRAPPER_PYTHON="$PYENV_ROOT/versions/miniconda3-latest/bin/python"
 export VIRTUALENVWRAPPER_VIRTUALENV="/usr/local/bin/virtualenv"
+
 
 eval "$(pyenv init - --no-rehash)"
 eval "$(pyenv virtualenv-init -)"
