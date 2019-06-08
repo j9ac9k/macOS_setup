@@ -46,18 +46,21 @@ export PATH="$HOME/.rbenv/shims:$PATH"
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PYENV_HOOK_PATH="/usr/local/var/pyenv/pyenv.d/"
+
+# pyenv-virtualenv
+export PYENV_VIRTUALENV_VERBOSE_ACTIVATE="true"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
+# pyenv-virtualenvwrapper
+# export VIRTUALENVWRAPPER_PYTHON="$PYENV_ROOT/versions/miniconda3-latest/bin/python"
+# export VIRTUALENVWRAPPER_VIRTUALENV="/usr/local/bin/virtualenv"
 
 # For reciprocate
 export WORKON_HOME="$PYENV_ROOT/versions"
 
-export PYENV_VIRTUALENV_VERBOSE_ACTIVATE="true"
-export VIRTUALENVWRAPPER_VIRTUALENV="/usr/local/bin/virtualenv"
-
-
 eval "$(pyenv init - --no-rehash)"
-eval "$(pyenv virtualenv-init -)"
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 # pyenv virtualenvwrapper_lazy
 
 # Powerlevel Theme Settings
@@ -121,7 +124,7 @@ bindkey '\e\e[C' forward-word
 bindkey '\e\e[D' backward-word
 
 # Nice graphics
-archey -c -o
+archey -c
 
 # sharing history
 setopt share_history
@@ -139,7 +142,6 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
-export HOMEBREW_GITHUB_API_TOKEN=702d140a4f2f00830e5de658e0de521854f451e1
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
