@@ -89,8 +89,8 @@ brew 'source-highlight'
 
 # Python Specific
 brew 'python'
-brew 'pyenv', args: ['HEAD']
-brew 'pyenv-virtualenv', args: ['HEAD']
+brew 'pyenv'
+brew 'pyenv-virtualenv'
 brew 'pyenv-which-ext', args: ['HEAD']
 brew 'pipx'
 
