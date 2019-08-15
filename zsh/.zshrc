@@ -22,14 +22,11 @@ export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 # setting user
 export DEFAULT_USER=$USER
 
-# If you come from bash you might have to change your $PATH.
-export PATH="$HOME/.local/bin:$PATH"
-
 # Add coreutils
 # export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 # Preferred editor for local and remote sessions
-export EDITOR='code'
+export EDITOR='code --wait'
 
 # pipenv
 export PIPENV_VENV_IN_PROJECT=1
@@ -41,26 +38,27 @@ export PIPENV_DEFAULT_PYTHON_VERSION=3
 export PROJECT_HOME="$HOME/Developer"
 
 # rbenv
-export PATH="$HOME/.rbenv/shims:$PATH"
+export PATH="$PATH:$HOME/.rbenv/shims"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-export PYENV_HOOK_PATH="/usr/local/var/pyenv/pyenv.d/"
-
-# pyenv-virtualenv
-export PYENV_VIRTUALENV_VERBOSE_ACTIVATE="true"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export PYENV_HOOK_PATH="/usr/local/var/pyenv/pyenv.d/"
+export PYENV_VIRTUALENV_VERBOSE_ACTIVATE="true"
 
-# pyenv-virtualenvwrapper
-# export VIRTUALENVWRAPPER_PYTHON="$PYENV_ROOT/versions/miniconda3-latest/bin/python"
-# export VIRTUALENVWRAPPER_VIRTUALENV="/usr/local/bin/virtualenv"
+# pyenv gettext.sh mixup
+export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
+
+
+# If you come from bash you might have to change your $PATH.
+export PATH="$HOME/.local/bin:$PATH"
 
 # For reciprocate
 export WORKON_HOME="$PYENV_ROOT/versions"
 
-eval "$(pyenv init - --no-rehash)"
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 # pyenv virtualenvwrapper_lazy
 
 # Powerlevel Theme Settings
@@ -124,7 +122,7 @@ bindkey '\e\e[C' forward-word
 bindkey '\e\e[D' backward-word
 
 # Nice graphics
-archey -c
+archey -c -o
 
 # sharing history
 setopt share_history
@@ -145,16 +143,16 @@ zplug load
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/ognyan/.pyenv/versions/miniconda3-latest/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/ognyan/.pyenv/versions/miniconda3-latest/etc/profile.d/conda.sh" ]; then
-        . "/Users/ognyan/.pyenv/versions/miniconda3-latest/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/ognyan/.pyenv/versions/miniconda3-latest/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# __conda_setup="$('/Users/ognyan/.pyenv/versions/miniconda3-latest/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/Users/ognyan/.pyenv/versions/miniconda3-latest/etc/profile.d/conda.sh" ]; then
+#         . "/Users/ognyan/.pyenv/versions/miniconda3-latest/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/Users/ognyan/.pyenv/versions/miniconda3-latest/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
